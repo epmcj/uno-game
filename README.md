@@ -1,2 +1,2 @@
 # uno-game
- This is an implementation of the classic card game UNO.
+ This is an implementation in JAVA of the classic card game UNO.
