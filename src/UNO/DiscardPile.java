@@ -8,9 +8,9 @@ import java.util.ArrayList;
  * @author Eduardo Pinto and Otávio Augusto
  *
  */
-public class DescartPile <CardType> extends CardCollection <CardType>{
+public class DiscardPile <CardType> extends CardCollection <CardType>{
 	
-	public DescartPile(){
+	public DiscardPile(){
 		super();
 	}
 	
@@ -32,16 +32,14 @@ public class DescartPile <CardType> extends CardCollection <CardType>{
 	}
 
 	/**
-	 * 
-	 * @return
+	 * This method take the cards in the Discard Pile and make a new deck.
+	 * Only the last discarded card remains after this operation.
+	 * @return a list with all the cards but the top.
 	 */
-	public ArrayList<CardType> takeCardsBack(){
-		if(0 == this.cardList.size())
-			return null;
+	public ArrayList<CardType> takeCardsBack(){		
+		ArrayList<CardType> newDeck = new ArrayList<CardType>();
 		
-		ArrayList<CardType> newDeck = new ArrayList();
-		
-		while(this.cardList.size() != 1){
+		while(this.cardList.size() > 1){
 			newDeck.add(this.cardList.remove(0));
 		}
 		
