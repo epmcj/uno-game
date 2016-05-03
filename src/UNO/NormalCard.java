@@ -2,7 +2,7 @@ package UNO;
 
 /**
  * This class represent one card in a normal deck of uno
- * 
+ * @author Eduardo Pinto and Otávio Augusto
 */
 public class NormalCard extends UnoCard{
     /**
@@ -38,6 +38,40 @@ public class NormalCard extends UnoCard{
         this.color = color;
         this.value = value;
     }
-
-    public String toString() { return value.toString() + " " + color.toString();}
+    
+    /**
+     * 
+     */
+    @Override
+    public String getColor(){
+    	return this.color.name();
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public String getValue(){
+    	return this.value.name();
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public String getEffect(){
+    	return null;
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public boolean match(UnoCard card){
+    	if(card.getColor().equals("BLACK"))
+    		return true;
+    	
+    	return (card.getColor().equals(this.getColor())
+    			|| card.getValue().equals(this.getValue()));	
+    }
 }

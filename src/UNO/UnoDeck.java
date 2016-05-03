@@ -45,8 +45,8 @@ public class UnoDeck extends CardCollection <UnoCard>{
     }
 	
 	@Override
-	public void addCard(UnoCard card){
-		this.cardList.add(card);
+	public boolean addCard(UnoCard card){
+		return this.cardList.add(card);     // PRECISA SER MODIFICADO.
 	}
 
 	@Override

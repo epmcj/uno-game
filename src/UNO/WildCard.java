@@ -26,6 +26,39 @@ public class WildCard extends UnoCard{
         this.color = color;
         this.value = value;
     }
-
-    public String toString() { return value.toString() + " " + color.toString();}
+    
+    /**
+     * 
+     */
+    @Override
+    public String getColor(){
+    	return this.color.name();
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public String getValue(){
+    	return this.value.name();
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public String getEffect(){
+    	return this.getValue();
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public boolean match(UnoCard card){
+    	if(this.getColor().equals("BLACK"))
+    		return false;
+    	
+    	return (card.getColor().equals(this.getColor()));	
+    }
 }

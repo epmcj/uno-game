@@ -16,8 +16,8 @@ public class Hand extends CardCollection <UnoCard>{
 	 * Add a card in the hand of the player.
 	 */
 	@Override
-	public void addCard(UnoCard card){
-		this.cardList.add(card);
+	public boolean addCard(UnoCard card){
+		return this.cardList.add(card);
 	}
 
 	/**

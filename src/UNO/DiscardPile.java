@@ -18,8 +18,11 @@ public class DiscardPile extends CardCollection <UnoCard>{
 	 * Add an card on the top of the pile.
 	 */
 	@Override
-	public void addCard(UnoCard card){
-		this.cardList.add(card);
+	public boolean addCard(UnoCard card){
+		if(!this.getTopCard().match(card))
+			return false;
+
+		return this.cardList.add(card);
 	}
 
 	/**
@@ -31,6 +34,22 @@ public class DiscardPile extends CardCollection <UnoCard>{
 		throw new UnsupportedOperationException("Operation not allowed.");
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public UnoCard getTopCard(){
+		UnoCard aux;
+		
+		try{
+			aux = cardList.get(cardList.size()-1);
+		}catch(IndexOutOfBoundsException e){
+			aux = null;
+		}
+		
+		return aux;
+	}
+	
 	/**
 	 * This method take the cards in the Discard Pile and make a new deck.
 	 * Only the last discarded card remains after this operation.

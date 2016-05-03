@@ -15,7 +15,7 @@ public abstract class CardCollection <CardType> {
 		cardList = new ArrayList<CardType>();
 	}
 	
-	public abstract void addCard(CardType card);
+	public abstract boolean addCard(CardType card);
 	public abstract CardType getCard(int index);
 	
 	/**
