@@ -15,8 +15,8 @@ public abstract class CardCollection <CardType> {
 		cardList = new ArrayList<CardType>();
 	}
 	
-	public abstract void add(CardType card);
-	public abstract CardType remove(int index);
+	public abstract void addCard(CardType card);
+	public abstract CardType getCard(int index);
 	
 	/**
 	 * Count the number of cards in the collection.

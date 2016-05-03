@@ -6,7 +6,7 @@ import cardGame.*;
  * @author Eduardo Pinto and Otávio Augusto
  *
  */
-public class Hand <CardType> extends CardCollection <CardType>{
+public class Hand extends CardCollection <UnoCard>{
 	
 	public Hand(){
 		super();
@@ -16,7 +16,7 @@ public class Hand <CardType> extends CardCollection <CardType>{
 	 * Add a card in the hand of the player.
 	 */
 	@Override
-	public void add(CardType card){
+	public void addCard(UnoCard card){
 		this.cardList.add(card);
 	}
 
@@ -25,7 +25,7 @@ public class Hand <CardType> extends CardCollection <CardType>{
 	 * @return the UNO card removed.
 	 */
 	@Override
-	public CardType remove(int index){
+	public UnoCard getCard(int index){
 		try{
 			return this.cardList.remove(index);
 		} catch(IndexOutOfBoundsException e){
