@@ -1,12 +1,8 @@
-package UNO;
-
-import cardGame.Card;
-
 /**
  * This class represent one card in a normal deck of uno
  * 
 */
-public class UnoCard implements Card{
+public class UnoCard {
     /**
      * This enum represent a type which elements are color of a deck card.
     */
@@ -47,5 +43,5 @@ public class UnoCard implements Card{
         this.value = value;
     }
 
-    public String getID() { return value.toString() + " " + color.toString();}
+    public String toString() { return value.toString() + " " + color.toString();}
 }
