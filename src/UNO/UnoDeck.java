@@ -19,7 +19,7 @@ public class UnoDeck extends CardCollection <UnoCard>{
                     if(j == 1 && v.equals(NormalCard.Value.ZERO) )
                         continue;
                     else 
-                        cardList.add(new NormalCard(c,v));s
+                        cardList.add(new NormalCard(c,v));
                 }
             }
         }
@@ -38,7 +38,7 @@ public class UnoDeck extends CardCollection <UnoCard>{
                     if(j == 1 && (v.equals(WildCard.Value.WILD) || v.equals(WildCard.Value.WILDDRAWFOUR)))
                         continue;
                     else 
-                        deck.add(new WildCard(c,v));
+                        cardList.add(new WildCard(c,v));
                 }
             }
         }

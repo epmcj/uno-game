@@ -8,15 +8,15 @@ public class WildCard extends UnoCard{
      *
     */
     public enum Color {        
-        BLACK  { public String toString() { return "K"; }}
+        BLACK  { public String name() { return "BLACK"; }}
     }
 
     /**
      *
     */
     public enum Value {        
-        WILD { public String toString() { return "13";}},
-        WILDDRAWFOUR { public String toString() { return "14";}}
+        WILD            { public String name() { return "13";}},
+        WILDDRAWFOUR    { public String name() { return "14";}}
     }
 
     private final Color color;
