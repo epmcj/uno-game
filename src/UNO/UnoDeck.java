@@ -13,15 +13,32 @@ public class UnoDeck extends CardCollection <UnoCard>{
 	public final static int LENGTH = 108;
 	
 	public UnoDeck(){
-        for(UnoCard.Color c:UnoCard.Color.values()){
+        for(NormalCard.Color c:NormalCard.Color.values()){
             for(int j = 0; j < 2 ; j++) {
-                for(UnoCard.Value v:UnoCard.Value.values()){
-                    if(c.equals(UnoCard.Color.BLACK) || j == 1 && v.equals(UnoCard.Value.ZERO) || j == 1 && (v.equals(UnoCard.Value.WILD) || v.equals(UnoCard.Value.WILDDRAWFOUR)))
+                for(NormalCard.Value v:NormalCard.Value.values()){
+                    if(j == 1 && v.equals(NormalCard.Value.ZERO) )
                         continue;
-                    else if(v.equals(UnoCard.Value.WILD) || v.equals(UnoCard.Value.WILDDRAWFOUR))
-                        cardList.add(new UnoCard(UnoCard.Color.BLACK,v));
                     else 
-                    	cardList.add(new UnoCard(c,v));
+                        deck.add(new NormalCard(c,v));s
+                }
+            }
+        }
+
+        for(EspecialCard.Color c:EspecialCard.Color.values()){
+            for(int j = 0; j < 2 ; j++) {
+                for(EspecialCard.Value v:EspecialCard.Value.values()){
+                    deck.add(new EspecialCard(c,v));
+                }
+            }
+        }
+
+        for(WildCard.Color c:WildCard.Color.values()){
+            for(int j = 0; j < 2 ; j++) {
+                for(WildCard.Value v:WildCard.Value.values()){
+                    if(j == 1 && (v.equals(WildCard.Value.WILD) || v.equals(WildCard.Value.WILDDRAWFOUR)))
+                        continue;
+                    else 
+                        deck.add(new WildCard(c,v));
                 }
             }
         }
