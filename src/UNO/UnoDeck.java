@@ -19,7 +19,7 @@ public class UnoDeck extends CardCollection <UnoCard>{
                     if(j == 1 && v.equals(NormalCard.Value.ZERO) )
                         continue;
                     else 
-                        deck.add(new NormalCard(c,v));s
+                        cardList.add(new NormalCard(c,v));s
                 }
             }
         }
@@ -27,7 +27,7 @@ public class UnoDeck extends CardCollection <UnoCard>{
         for(EspecialCard.Color c:EspecialCard.Color.values()){
             for(int j = 0; j < 2 ; j++) {
                 for(EspecialCard.Value v:EspecialCard.Value.values()){
-                    deck.add(new EspecialCard(c,v));
+                    cardList.add(new EspecialCard(c,v));
                 }
             }
         }
