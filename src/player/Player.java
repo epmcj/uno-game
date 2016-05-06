@@ -1,6 +1,8 @@
 package player;
 
 import system.IDGenerator;
+import system.ID;
+import UNO.Hand;
 
 /** 
  * 
@@ -8,31 +10,32 @@ import system.IDGenerator;
  *
  */
 public class Player {
-	private int playerID;
-	private boolean playerTurn;
+	private ID <Integer> p_id;
+	private boolean p_turn;
+	private Hand p_hand;
 	
-	public Player(){
-		this.playerID = -1;
-		this.playerTurn =  false;
+	public Player(IDGenerator gen){
+		if(gen == null)
+			gen = IDGenerator.getInstance();
+		this.p_id   = gen.getAnID();
+		this.p_turn = false;
+		this.p_hand = new Hand();
 	}
 	
-	public void setPlayerID(){
-		if(playerID == -1){
-			IDGenerator gen = IDGenerator.getInstance();
-			this.playerID = gen.getAnID();
-		}	
+	public int getID(){
+		return this.p_id.getID();
 	}
 	
 	public void timeToPlay(){
-		this.playerTurn = true;
+		this.p_turn = true;
 	}
 	
 	public void passTurn(){
-		this.playerTurn = false;
+		this.p_turn = false;
 	}
 	
 	public boolean isAbleToPlay(){
-		return this.playerTurn;
+		return this.p_turn;
 	}
 	
 }

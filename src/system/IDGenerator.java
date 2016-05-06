@@ -29,12 +29,12 @@ public class IDGenerator {
 	 * Get an ID.
 	 * @return an ID.
 	 */
-	public int getAnID(){
+	public ID<Integer> getAnID(){
 		if(this.userID > this.limit)
 			throw new IndexOutOfBoundsException("Too many ID's.");
-		int ID = this.userID;
+		ID <Integer> id = new ID <Integer> (this.userID);
 		this.userID++;
-		return ID; 
+		return id; 
 	}
 	
 	/**

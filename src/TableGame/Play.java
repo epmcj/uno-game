@@ -1,4 +1,4 @@
-package UNOGame;
+package TableGame;
 import UNO.*;
 import java.util.ArrayList;
 /**
