@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Eduardo Pinto and Otávio Augusto
+ * @author Eduardo Pinto and Otavio Augusto
  *
  */
 public class DiscardPile extends CardCollection <UnoCard>{

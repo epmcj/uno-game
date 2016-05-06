@@ -5,7 +5,7 @@ package UNO;
  * numbered from 0 to 9 and effect cards. The cards also have 5 different 
  * colors. In order to represent this features, at least two fields are 
  * necessary: the color of the card and its value.
- * @author Eduardo Pinto and Otávio Augusto
+ * @author Eduardo Pinto and Otavio Augusto
  *
  */
 public abstract class UnoCard {

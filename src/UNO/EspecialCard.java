@@ -8,19 +8,19 @@ public class EspecialCard extends UnoCard{
      * 
     */
     public enum Color {
-        BLUE   { public String name() { return "BLUE"; }},
-        RED    { public String name() { return "RED"; }},
-        GREEN  { public String name() { return "GREEN"; }},
-        YELLOW { public String name() { return "YELLOW"; }}
+        BLUE   { public String toString() { return "BLUE"; }},
+        RED    { public String toString() { return "RED"; }},
+        GREEN  { public String toString() { return "GREEN"; }},
+        YELLOW { public String toString() { return "YELLOW"; }}
     }
 
     /**
      * 
     */
     public enum Value {
-        SKIP    { public String name() { return "10";}},
-        REVERSE { public String name() { return "11";}},
-        DRAWTWO { public String name() { return "12";}}
+        SKIP    { public String toString() { return "10";}},
+        REVERSE { public String toString() { return "11";}},
+        DRAWTWO { public String toString() { return "12";}}
     }
 
     private final Color color;

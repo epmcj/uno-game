@@ -5,7 +5,7 @@ import cardGame.*;
 
 /**
  * 
- * @author Eduardo Pinto and Otávio Augusto
+ * @author Eduardo Pinto and Otavio Augusto
  *
  */
 public class UnoDeck extends CardCollection <UnoCard>{
