@@ -38,6 +38,14 @@ public class IDGenerator {
 	}
 	
 	/**
+	 * Get the last ID given.
+	 * @return the last ID given.
+	 */
+	public int getLastID(){
+		return (this.userID - 1);
+	}
+	
+	/**
 	 * Reset the ID counter.
 	 */
 	public void resetIDCount(){
@@ -45,10 +53,20 @@ public class IDGenerator {
 	}
 	
 	/**
-	 * Use to change the limit of the possibles ID's.
-	 * @param lim
+	 * Use to change the limit of the possibles ID's. The limit is altered only
+	 * if the new limit is bigger or equal than the current ID.
+	 * @param lim: the new limit.
 	 */
 	public void setIDLim(int lim){
-		this.limit = lim;
+		if(lim >= this.userID)
+			this.limit = lim;
+	}
+	
+	/**
+	 * Get the generator limit.
+	 * @return the generator limit.
+	 */
+	public int getIDLim(){
+		return this.limit;
 	}
 }

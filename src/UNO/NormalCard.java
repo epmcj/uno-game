@@ -60,7 +60,7 @@ public class NormalCard extends UnoCard{
      */
     @Override
     public String getEffect(){
-    	return null;
+    	return "NONE";
     }
     
     /**

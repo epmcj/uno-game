@@ -10,14 +10,36 @@ package UNO;
  */
 public abstract class UnoCard {
 	
+	/**
+	 * Get the color of the UNO card.
+	 * @return a string that contains the color of the UNO card.
+	 */
 	public abstract String getColor();
 	
+	/**
+	 * Get the value of the UNO card. It can be a number or an effect.
+	 * @return a string that contains the value of the UNO card.
+	 */
 	public abstract String getValue();
 	
+	/**
+	 * Get the effect of the UNO card.
+	 * @return a string that contains the effect of the UNO card.
+	 */
 	public abstract String getEffect();
 	
+	/**
+	 * Verify if the UNO card matches with another one.
+	 * @param card to be compared.
+	 * @return true if the two UNO cards match or false otherwise.
+	 */
 	public abstract boolean match(UnoCard card);
 	
+	/**
+	 * Get a representation of the UNO card.
+	 * @return a string that contains the representation of the UNO card.
+	 */
+	@Override
     public String toString(){
     	return this.getColor() + ' ' + this.getValue();
     }

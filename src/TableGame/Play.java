@@ -8,7 +8,7 @@ public class Play {
 	/**
 
 	*/
-	private ArrayList<User> players = new ArrayList<User>();
+	//private ArrayList<User> players = new ArrayList<User>();
 
 	private int currentPlayer = 0;
 
