@@ -1,9 +1,12 @@
-package UNO;
+package uno;
+
+import tableGame.Play;
+
 /**
  *
  * 
 */
-public class EspecialCard extends UnoCard{
+public abstract class EspecialCard extends UnoCard{
     /**
      * 
     */
@@ -51,9 +54,7 @@ public class EspecialCard extends UnoCard{
      * 
      */
     @Override
-    public String getEffect(){
-    	return this.getValue();
-    }
+    public abstract void applyEffect(Play game);
     
     /**
      * 

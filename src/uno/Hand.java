@@ -1,4 +1,4 @@
-package UNO;
+package uno;
 import cardGame.*;
 
 /**

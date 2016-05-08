@@ -1,4 +1,6 @@
-package UNO;
+package uno;
+
+import tableGame.Play;
 
 /**
  * This class represent one card in a normal deck of uno
@@ -56,12 +58,11 @@ public class NormalCard extends UnoCard{
     }
     
     /**
-     * 
+     * This kind of card have no effect. Calling this method doesn't
+     * modify the state of the game.
      */
     @Override
-    public String getEffect(){
-    	return "NONE";
-    }
+    public void applyEffect(Play game){	}
     
     /**
      * 
@@ -73,5 +74,18 @@ public class NormalCard extends UnoCard{
     	
     	return (card.getColor().equals(this.getColor())
     			|| card.getValue().equals(this.getValue()));	
+    }
+    
+    /**
+     * Verify if the strings is a valid color.
+     * @param colorToComp the string that contains the name of the color.
+     * @return true if the color is valid, false otherwise.
+     */
+    public static boolean validColor(String colorToComp){
+    	for(Color color : Color.values()){
+    		if(color.equals(colorToComp.toUpperCase()))
+    			return true;
+    	}
+    	return false;
     }
 }

@@ -1,4 +1,6 @@
-package UNO;
+package uno;
+
+import tableGame.Play;
 
 /**
  * This class represents an generic UNO card. In UNO game, there are cards
@@ -9,7 +11,6 @@ package UNO;
  *
  */
 public abstract class UnoCard {
-	
 	/**
 	 * Get the color of the UNO card.
 	 * @return a string that contains the color of the UNO card.
@@ -22,11 +23,12 @@ public abstract class UnoCard {
 	 */
 	public abstract String getValue();
 	
+	
 	/**
-	 * Get the effect of the UNO card.
-	 * @return a string that contains the effect of the UNO card.
+	 * Apply the effect of a UNO card in the game.
+	 * @param game: the game that will be affected.
 	 */
-	public abstract String getEffect();
+	public abstract void applyEffect(Play game);
 	
 	/**
 	 * Verify if the UNO card matches with another one.

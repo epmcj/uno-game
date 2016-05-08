@@ -1,4 +1,4 @@
-package UNO;
+package uno;
 import cardGame.*;
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;

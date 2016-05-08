@@ -1,9 +1,9 @@
 package player;
 
 import system.IDGenerator;
+import uno.Hand;
+import uno.UnoCard;
 import system.ID;
-import UNO.Hand;
-import UNO.UnoCard;
 
 /** 
  * 

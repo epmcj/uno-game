@@ -1,4 +1,4 @@
-package UNO;
+package uno;
 
 import java.util.Random;
 import cardGame.*;
@@ -26,22 +26,19 @@ public class UnoDeck extends CardCollection <UnoCard>{
 
         for(EspecialCard.Color c:EspecialCard.Color.values()){
             for(int j = 0; j < 2 ; j++) {
-                for(EspecialCard.Value v:EspecialCard.Value.values()){
-                    cardList.add(new EspecialCard(c,v));
-                }
+                cardList.add(new SkipCard(c));
+                cardList.add(new ReverseCard(c));
+                cardList.add(new DrawTwoCard(c));
+                
             }
         }
 
-        for(WildCard.Color c:WildCard.Color.values()){
-            for(int j = 0; j < 2 ; j++) {
-                for(WildCard.Value v:WildCard.Value.values()){
-                    if(j == 1 && (v.equals(WildCard.Value.WILD) || v.equals(WildCard.Value.WILDDRAWFOUR)))
-                        continue;
-                    else 
-                        cardList.add(new WildCard(c,v));
-                }
-            }
+        
+        for(int j = 0; j < 4; j++) {
+             cardList.add(new WildCard());
+             cardList.add(new WildDrawFourCard());
         }
+        
     }
 
     public void shuffle() {
@@ -53,7 +50,14 @@ public class UnoDeck extends CardCollection <UnoCard>{
         }
     }
 
-    public UnoCard get(final int i) { return cardList.get(i); }
+    public UnoCard get(final int i) { 
+    	try{
+			return this.cardList.get(i);
+			
+		} catch(IndexOutOfBoundsException e){
+			return null;
+		} 
+    }
 
     public String toString() {
         final StringBuilder sb = new StringBuilder();
