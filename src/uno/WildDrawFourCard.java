@@ -3,6 +3,11 @@ package uno;
 import player.Player;
 import tableGame.Play;
 
+/**
+ * This class represents a Wild Draw Four Card.
+ * @author Eduardo Pinto and Otavio Augusto
+ *
+ */
 public class WildDrawFourCard extends WildCard{
 	private Value value;
 	
@@ -12,7 +17,7 @@ public class WildDrawFourCard extends WildCard{
 	}
 	
 	/**
-     * 
+     * Get the value of the card (WILDDRAWFOUR).
      */
     @Override
     public String getValue(){
@@ -21,7 +26,8 @@ public class WildDrawFourCard extends WildCard{
     
 	/**
 	 * A "WILD DRAW FOUR" card change it's color like the "WILD" one 
-	 * and make the next player take 4 new cards.
+	 * and make the next player take 4 new cards. Additionally, it 
+	 * loses its turn.
 	 */
     @Override
 	public void applyEffect(Play game){
@@ -30,7 +36,8 @@ public class WildDrawFourCard extends WildCard{
 			for(int i = 0; i < 4; i++)
 				p.takeCard(game.getCardFromDeck());
     	}
-    	super.applyEffect(game);	
+    	
+    	super.applyEffect(game);	    	
     }
 
 }

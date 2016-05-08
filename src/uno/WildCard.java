@@ -4,9 +4,10 @@ import player.Player;
 import tableGame.Play;
 
 /**
+ * This class represents a Wild Card.
+ * @author Eduardo Pinto and Otavio Augusto
  *
- * 
-*/
+ */
 public class WildCard extends UnoCard{
     /**
      *
@@ -35,7 +36,8 @@ public class WildCard extends UnoCard{
     }
     
     /**
-     * 
+     * Get the color of the card. If this card was already played, then
+     * the new color is showed.
      */
     @Override
     public String getColor(){
@@ -46,7 +48,7 @@ public class WildCard extends UnoCard{
     }
     
     /**
-     * 
+     * Get the value of the card(WILD).
      */
     @Override
     public String getValue(){
@@ -55,16 +57,17 @@ public class WildCard extends UnoCard{
     
     /**
      * Apply the effect of the wild card in the game. A "WILD" card
-     * changes it's color for BLUE, RED, YELLOR or GREEN. 
+     * changes it's color for BLUE, RED, YELLOR or GREEN. Additionally, 
+	 * the next player loses its turn.
      */
     @Override
     public void applyEffect(Play game){   	
-    	
-    	
+    	// MUDAR COR.
+    	game.rotatePlayer();
     }
     
     /**
-     * 
+     * Only matches with other cards if its has a color different of BLACK.
      */
     @Override
     public boolean match(UnoCard card){

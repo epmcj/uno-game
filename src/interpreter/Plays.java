@@ -1,5 +1,5 @@
 package interpreter;
-import UNO.*;
+import uno.*;
 
 public interface Plays {
 	/*

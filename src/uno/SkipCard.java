@@ -2,14 +2,23 @@ package uno;
 
 import tableGame.Play;
 
+/**
+ * This class represents a Skip Card.
+ * @author Eduardo Pinto and Otavio Augusto
+ *
+ */
 public class SkipCard extends EspecialCard{
 
 	public SkipCard(EspecialCard.Color color){
 		super(color, EspecialCard.Value.SKIP);
 	}
 	
+	/**
+	 * Rotates the game in order to produce the result of skipping a player
+	 * in the end of the turn.
+	 */
 	@Override
 	public void applyEffect(Play game){
-		
+		game.rotatePlayer();
 	}
 }
