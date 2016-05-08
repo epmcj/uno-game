@@ -33,6 +33,30 @@ public class Play {
 	}
 	
 	/**
+	 * Try to play a card that is in the hand of the current player. If it 
+	 * is possible, then the card is put in the discard pile and its effect
+	 * is applied in the game. 
+	 * @param cardName the name of the card that will be played.
+	 * @return if the operation was successful.
+	 */
+	public boolean playCard(String cardName){
+		UnoCard cardToComp = this.current_player.p.playCard(cardName);
+		
+		if(cardToComp == null)
+			return false;
+		
+		if(this.dPile.getTopCard().match(cardToComp)){
+			this.dPile.addCard(cardToComp);
+			cardToComp.applyEffect(this);
+			return true;
+			
+		} else{
+			this.current_player.p.takeCard(cardToComp);
+			return false;
+		}		
+	}
+	
+	/**
 	 * Changes the direction of the game and the next player.
 	 */
 	public void changeDirection(){

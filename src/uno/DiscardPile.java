@@ -35,8 +35,8 @@ public class DiscardPile extends CardCollection <UnoCard>{
 	}
 
 	/**
-	 * 
-	 * @return
+	 * This function get the last card discarded in the game.
+	 * @return the card on the top of the discard pile.
 	 */
 	public UnoCard getTopCard(){
 		UnoCard aux;
