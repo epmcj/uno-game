@@ -21,7 +21,7 @@ public class Player {
 		this.p_name += this.p_id.getID();
 	}
 	
-	public Player(String name){
+	public Player(String name) {
 		this.p_id   = IDGenerator.getInstance().getAnID();
 		this.p_turn = false;
 		this.p_hand = new Hand();
@@ -69,6 +69,13 @@ public class Player {
 	 */
 	public boolean isAbleToPlay(){
 		return this.p_turn;
+	}
+	
+	/**
+	 * @return the number of cards present in hand
+	 */
+	public int numCards(){
+		return p_hand.getNumCards();
 	}
 	
 	/**

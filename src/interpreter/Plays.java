@@ -2,6 +2,7 @@ package interpreter;
 import uno.*;
 
 public interface Plays {
+	
 	/*
 	 * Request that the table game create a 
 	 * new player and informs its name if it was passed.

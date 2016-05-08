@@ -39,7 +39,7 @@ public class Play {
 	 * @param cardName the name of the card that will be played.
 	 * @return if the operation was successful.
 	 */
-	public boolean playCard(String cardName){
+	public boolean pushCard(String cardName){
 		UnoCard cardToComp = this.current_player.p.playCard(cardName);
 		
 		if(cardToComp == null)
@@ -54,6 +54,16 @@ public class Play {
 			this.current_player.p.takeCard(cardToComp);
 			return false;
 		}		
+	}
+
+	/**
+	 * Try to pull a card from de deck to the hand of the current player. If it 
+	 * is possible, then the card is put in the hand. 
+	 * @return if the operation was successful.
+	 */
+	public void pullCard() {
+		UnoCard card = getCardFromDeck();
+		this.current_player.p.takeCard(card);
 	}
 	
 	/**
@@ -123,7 +133,20 @@ public class Play {
 	/**
 	 * Finalizes one turn.
 	 */
-	public void passTurn(){
+	public void passTurn(boolean advertisedUno){
+		/**it will makes the user draw two card if he said uno without
+		 * having only one card in hand or no indicate uno and having only one card.
+		 */
+		if(advertisedUno && (current_player.p.numCards() > 1)){
+			current_player.p.takeCard(getCardFromDeck());
+			current_player.p.takeCard(getCardFromDeck());
+		}
+		
+		if(!advertisedUno && (current_player.p.numCards() == 1)){
+			current_player.p.takeCard(getCardFromDeck());
+			current_player.p.takeCard(getCardFromDeck());
+		}
+		
 		this.current_player.p.passTurn(this.nextPlayer.p);
 		this.rotatePlayer();
 	}
