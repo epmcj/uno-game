@@ -7,19 +7,19 @@ interface Plays {
 	 * Request that the table game create a 
 	 * new player and informs its name if it was passed.
 	 */
-	public boolean createPlayer(String name);
+	public void createPlayer(String name);
 	
 	/*
 	 * this method is responsible to request a card to discard 
 	 * when the input was correct pass. 
 	 */
-	public boolean pushCard(UnoCard card);
+	public boolean pushCard(String cardName);
 	
 	/*
 	 * User request get a card from deck if 
 	 * the input was correct.
 	 */
-	public void pullCard(UnoCard card);
+	public void pullCard();
 	
 	/*
 	 * It pass the turn to another player.

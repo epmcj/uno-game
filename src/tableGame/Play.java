@@ -10,17 +10,18 @@ import uno.*;
  * @author Eduardo Pinto and Otavio Augusto
  *
  */
-public class Play {
+public class Play implements Plays {
 	private DiscardPile dPile;
 	private UnoDeck deck;
 	private ArrayList <Player> players;
-	private p_represent current_player;
-	private p_represent nextPlayer;
-	private String direction;
+	private p_represent current_player = null;
+	private p_represent nextPlayer = null;
+	private String direction = null;
 	
 	public Play(){
-		
-		
+		this.dPile = new DiscardPile(); 
+		this.deck = new UnoDeck();
+		this.players = new ArrayList<Player>(); 
 	}
 	
 	/**
@@ -30,6 +31,29 @@ public class Play {
 	private class p_represent{
 		private Player p;
 		private int i;
+	}
+	
+	/**
+	 * This method creates a new player and put it in array of players
+	 */
+	public void createPlayer(String name){
+		if(name == null)
+			this.players.add(new Player());
+		else
+			this.players.add(new Player(name));
+	}
+	
+	/**
+	 * Distribute card between player and initialize the current and next player
+	 */
+	public void configPlay(){
+		this.current_player.p = players.get(0);
+		this.nextPlayer.p = players.get(1);
+		this.direction = "RIGTH";
+		
+		for(int i = 0; i < getNumPlayers(); i++)
+			for(int j = 0; j < 7 ; j++)
+				this.players.get(i).takeCard(getCardFromDeck());
 	}
 	
 	/**
