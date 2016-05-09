@@ -14,23 +14,14 @@ public class Play implements Plays {
 	private DiscardPile dPile;
 	private UnoDeck deck;
 	private ArrayList <Player> players;
-	private p_represent current_player = null;
-	private p_represent nextPlayer = null;
+	private Player current_player = null;
+	private Player nextPlayer = null;
 	private String direction = null;
 	
 	public Play(){
 		this.dPile = new DiscardPile(); 
 		this.deck = new UnoDeck();
 		this.players = new ArrayList<Player>(); 
-	}
-	
-	/**
-	 * This class just represent a player for the table. It knows a player's
-	 * info and its position on the array.
-	 */
-	private class p_represent{
-		private Player p;
-		private int i;
 	}
 	
 	/**
@@ -47,8 +38,8 @@ public class Play implements Plays {
 	 * Distribute card between player and initialize the current and next player
 	 */
 	public void configPlay(){
-		this.current_player.p = players.get(0);
-		this.nextPlayer.p = players.get(1);
+		this.current_player = players.get(0);
+		this.nextPlayer = players.get(1);
 		this.direction = "RIGTH";
 		
 		for(int i = 0; i < getNumPlayers(); i++)
@@ -64,7 +55,7 @@ public class Play implements Plays {
 	 * @return if the operation was successful.
 	 */
 	public boolean pushCard(String cardName){
-		UnoCard cardToComp = this.current_player.p.playCard(cardName);
+		UnoCard cardToComp = this.current_player.playCard(cardName);
 		
 		if(cardToComp == null)
 			return false;
@@ -75,7 +66,7 @@ public class Play implements Plays {
 			return true;
 			
 		} else{
-			this.current_player.p.takeCard(cardToComp);
+			this.current_player.takeCard(cardToComp);
 			return false;
 		}		
 	}
@@ -87,7 +78,7 @@ public class Play implements Plays {
 	 */
 	public void pullCard() {
 		UnoCard card = getCardFromDeck();
-		this.current_player.p.takeCard(card);
+		this.current_player.takeCard(card);
 	}
 	
 	/**
@@ -118,7 +109,7 @@ public class Play implements Plays {
 	 * @return the next player.
 	 */
 	public Player getNextPlayer(){
-		return this.nextPlayer.p;
+		return this.nextPlayer;
 	}
 	
 	/**
@@ -134,15 +125,14 @@ public class Play implements Plays {
 	 */
 	private void rotateNextPlayer(){
 		if(this.direction.equals("RIGHT")){
-			this.nextPlayer.i = this.nextPlayer.i++ % this.players.size();
-			
+			this.nextPlayer = players.get(this.nextPlayer.getID() % this.players.size());
 		} else{
-			this.nextPlayer.i = this.nextPlayer.i--;
-			if(this.nextPlayer.i < 0) 
-				this.nextPlayer.i = this.players.size() - 1;	
+			if(this.nextPlayer.getID() - 2 < 0) 
+				this.nextPlayer = players.get(this.players.size() - 1);
+			else
+				this.nextPlayer = players.get(this.nextPlayer.getID()-2);
+			
 		}
-		
-		this.nextPlayer.p = players.get(this.nextPlayer.i);
 	}
 	
 	/**
@@ -161,17 +151,17 @@ public class Play implements Plays {
 		/**it will makes the user draw two card if he said uno without
 		 * having only one card in hand or no indicate uno and having only one card.
 		 */
-		if(advertisedUno && (current_player.p.numCards() > 1)){
-			current_player.p.takeCard(getCardFromDeck());
-			current_player.p.takeCard(getCardFromDeck());
+		if(advertisedUno && (current_player.numCards() > 1)){
+			current_player.takeCard(getCardFromDeck());
+			current_player.takeCard(getCardFromDeck());
 		}
 		
-		if(!advertisedUno && (current_player.p.numCards() == 1)){
-			current_player.p.takeCard(getCardFromDeck());
-			current_player.p.takeCard(getCardFromDeck());
+		if(!advertisedUno && (current_player.numCards() == 1)){
+			current_player.takeCard(getCardFromDeck());
+			current_player.takeCard(getCardFromDeck());
 		}
 		
-		this.current_player.p.passTurn(this.nextPlayer.p);
+		this.current_player.passTurn(this.nextPlayer);
 		this.rotatePlayer();
 	}
 	
