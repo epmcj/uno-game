@@ -181,7 +181,7 @@ public class Play implements Plays {
 		return deck.getCard(0);
 	}
 	
-	public void showNumPlayerCards(){
+	public void showPlayerNumCards(){
 		for(int i = 0;i < getNumPlayers();i++){
 			System.out.print("PLAYER("+String.valueOf(i)+")"+" "+String.valueOf(players.get(i).numCards())+" ");
 		}
@@ -189,7 +189,7 @@ public class Play implements Plays {
 	}
 	
 	public void showCurrentPlayerCards(){
-		current_players.showCards();
+		current_player.showCards();
 		System.out.println();
 	}
 }
