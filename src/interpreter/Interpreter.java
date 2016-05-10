@@ -15,7 +15,7 @@ public class Interpreter {
 		String[] fields;
 		
 		while(true){
-			
+			System.out.print("> ");
 			fields = input.readFields();
 			
 			if(fields.length < 1 || fields.length > 4){
@@ -26,7 +26,7 @@ public class Interpreter {
 			switch(State){
 				//responsable to check the first plays(only can be a "PLAY" or "DRAW") 
 				case 0:
-					switch(fields[0]){		
+					switch(fields[0].toUpperCase()){		
 						case "PLAY":
 							if(command.playCard(fields))
 								return true;				//terminou partida
@@ -41,7 +41,7 @@ public class Interpreter {
 					break;
 				//check the second plays(only can be a "PLAY" or "PASS") 
 				case 1:
-					switch(fields[0]){
+					switch(fields[0].toUpperCase()){
 						case "PLAY":
 							if(command.playCard(fields))
 								return true;				//terminou partida

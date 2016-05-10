@@ -86,10 +86,18 @@ public class Table{
 		if(this.deck.isEmpty()){
 			ArrayList <UnoCard> list = dPile.takeCardsBack();
 			for(int i = 0; i < list.size(); i++)
-				deck.addCard(list.remove(0));
-			deck.shuffle();
+				this.deck.addCard(list.remove(0));
+			this.deck.shuffle();
 		}	
 			
-		return deck.getCard(0);
+		return this.deck.getCard(0);
+	}
+	
+	/**
+	 * Get the number of cards left in the deck.
+	 * @return the number of cards in the deck.
+	 */
+	public int getNumCardsOnDeck(){
+		return this.deck.getNumCards();
 	}
 }

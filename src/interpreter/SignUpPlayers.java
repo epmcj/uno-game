@@ -1,5 +1,6 @@
 package interpreter;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import player.Player;
 import system.IDGenerator;
@@ -18,11 +19,18 @@ public class SignUpPlayers {
 	private PlayersManager pM = PlayersManager.getInstance();
 	private IDGenerator idGen = IDGenerator.getInstance();
 	
-	public void sign(){
+	public boolean sign(){
 		int number;
 		System.out.print("DIGIT THE NUMBER OF PLAYER (2 TO 10): ");
 		
-		number = input.nextInt();
+		try{
+			number = input.nextInt();
+			
+		} catch(InputMismatchException e){
+			System.out.println("PLEASE INSERT A NUMBER.");
+			input.next();
+			return false;
+		}
 		
 		while(number < 2 || number > 10){
 			System.out.println("RANGER FROM 2 UNTIL 10 PLAYERS");
@@ -34,5 +42,7 @@ public class SignUpPlayers {
 			System.out.print("PLAYER " + String.valueOf(i+1) + " :");
 			pM.addPlayer(new Player(input.next(), idGen.getAnID()));
 		}
+		
+		return true;
 	}
 }

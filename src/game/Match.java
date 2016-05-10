@@ -24,8 +24,9 @@ public class Match implements game {
 		
 		return match;
 	}
+	
 	/**
-	 * 
+	 * Get prepare to start the game. 
 	 */
 	@Override
 	public void init() {
@@ -33,7 +34,7 @@ public class Match implements game {
 	}
 
 	/**
-	 * 
+	 * Starts the game distributing cards to all players.
 	 */
 	@Override
 	public void start() {
@@ -46,13 +47,12 @@ public class Match implements game {
 		
 		this.pControl.startRotation();
 		
-		System.out.println(this.pControl.getPlayersStatus());
 		this.showStatus();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * The current player takes a card from the deck.
+	 * @return true if the operation was successful, false otherwise.
 	 */
 	public boolean playerTakeCard(){
 		Player cPlayer = this.pControl.getCurrent();
@@ -63,8 +63,10 @@ public class Match implements game {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Verify if the number of players is a valid. To be valid, the game
+	 * must contain at least two players and a maximum of ten.  
+	 * @return true if the number of players is in the valid interval, false 
+	 * otherwise.
 	 */
 	private boolean verifyNumPlayers(){
 		if(this.pControl.getNumPlayers() < 10 && 
@@ -75,8 +77,8 @@ public class Match implements game {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Distribute 7 cards to all players in the game.
+	 * @return true if the operation was successful, false otherwise.
 	 */
 	private boolean distributeCards(){
 		Player p = this.pControl.getCurrent();
@@ -102,9 +104,11 @@ public class Match implements game {
 	}
 	
 	/**
-	 * 
-	 * @param name
-	 * @return
+	 * The current player plays the desired card. If the card requested
+	 * is not in player's hand, than nothing is done and the failure is
+	 * reported.
+	 * @param name: the name of the card that will be played.
+	 * @return true if the operation was successful, false otherwise.
 	 */
 	public boolean playerPlayCard(String name){
 		Player cPlayer = this.pControl.getCurrent();
@@ -120,7 +124,7 @@ public class Match implements game {
 	}
 	
 	/**
-	 * 
+	 * Apply the effect of the last card played in the game.
 	 */
 	public void applyEffect(){
 		UnoCard card = this.table.showTopCard();
@@ -129,8 +133,8 @@ public class Match implements game {
 	}
 	
 	/**
-	 * 
-	 * @param wildColor
+	 * Apply the effect of an color change card in the game.
+	 * @param wildColor - the color choosed by the user.
 	 */
 	public void applyEffect(String wildColor){
 		this.eControl.setWildColor(wildColor);
@@ -139,8 +143,9 @@ public class Match implements game {
 	}
 	
 	/**
-	 * 
-	 * @param advertUno
+	 * Finish a player's turn. If the player has only one more card left,
+	 * then it must signalizes with 'UNO'.
+	 * @param advertUno true if the player says 'UNO', false otherwise.
 	 */
 	public void passTurn(boolean advertUno){
 		if(advertUno){
@@ -162,18 +167,31 @@ public class Match implements game {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Verify if the current player have no more cards.
+	 * @return true if the player has no more cards, false otherwise.
 	 */
 	public boolean emptyHand(){
 		return (0 == pControl.getCurrent().numCards());
 	}
 	
+	/**
+	 * Show the status of the game printing them in the console.
+	 */
 	public void showStatus(){
 		Player p = this.pControl.getCurrent();
-		System.out.println(p.getName() + ":");
+		System.out.println("---------------------------------------"
+				+ "-----------------------------------------");
+		System.out.println(this.pControl.getPlayersStatus());
+		System.out.print("LAST CARD PLAYED: " 
+				+ this.table.showTopCard().toString() + "\t\t\t");
+		System.out.println(table.getNumCardsOnDeck() + " CARDS LEFT ON DECK.");
+		System.out.println("---------------------------------------"
+				+ "-----------------------------------------");
+		System.out.println(p.getName() + "'S TURN. CHOOSE ONE CARD:");
 		p.showCards();
-		System.out.println("DP TOP: " + this.table.showTopCard().toString());
+		System.out.println("---------------------------------------"
+				+ "-----------------------------------------");
+		
 	}
 	
 	/**
