@@ -190,4 +190,16 @@ public class Play implements Plays {
 			
 		return deck.getCard(0);
 	}
+	
+	public void showNumPlayerCards(){
+		for(int i = 0;i < getNumPlayers();i++){
+			System.out.print("PLAYER("+String.valueOf(i)+")"+" "+String.valueOf(players.get(i).numCards())+" ");
+		}
+		System.out.println();
+	}
+	
+	public void showCurrentPlayerCards(){
+		current_players.showCards();
+		System.out.println();
+	}
 }
