@@ -1,6 +1,6 @@
 package uno;
 
-import tableGame.Play;
+import tableGame.EffectsController;
 
 /**
  * This class represents a Reverse Card.
@@ -18,11 +18,8 @@ public class ReverseCard extends EspecialCard{
 	 * then this effect is similar to the skip one.
 	 */
 	@Override
-	public void applyEffect(Play game){
-		if(game.getNumPlayers() > 2)
-			game.changeDirection();
-		else 
-			game.rotatePlayer();
+	public void applyEffect(EffectsController ctrl){
+		ctrl.applyReverse();
 	}
 
 }

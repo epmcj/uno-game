@@ -1,7 +1,6 @@
 package uno;
 
-import player.Player;
-import tableGame.Play;
+import tableGame.EffectsController;
 
 /**
  * This class represents a Wild Card.
@@ -61,9 +60,8 @@ public class WildCard extends UnoCard{
 	 * the next player loses its turn.
      */
     @Override
-    public void applyEffect(Play game){   	
-    	// MUDAR COR.
-    	game.rotatePlayer();
+    public void applyEffect(EffectsController crtl){   	
+    	this.setColor(crtl.applyWild());
     }
     
     /**

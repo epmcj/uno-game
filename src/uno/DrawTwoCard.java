@@ -1,6 +1,6 @@
 package uno;
 
-import tableGame.Play;
+import tableGame.EffectsController;
 
 public class DrawTwoCard extends EspecialCard{
 	public DrawTwoCard(EspecialCard.Color color){
@@ -12,9 +12,7 @@ public class DrawTwoCard extends EspecialCard{
 	 * It also loses its turn.
 	 */
 	@Override
-	public void applyEffect(Play game){
-		game.getNextPlayer().takeCard(game.getCardFromDeck());
-		game.getNextPlayer().takeCard(game.getCardFromDeck());
-		game.rotatePlayer();
+	public void applyEffect(EffectsController ctrl){
+		ctrl.applyDrawTwo();
 	}
 }

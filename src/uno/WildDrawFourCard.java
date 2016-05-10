@@ -1,7 +1,6 @@
 package uno;
 
-import player.Player;
-import tableGame.Play;
+import tableGame.EffectsController;
 
 /**
  * This class represents a Wild Draw Four Card.
@@ -30,14 +29,9 @@ public class WildDrawFourCard extends WildCard{
 	 * loses its turn.
 	 */
     @Override
-	public void applyEffect(Play game){
-    	if(this.value == WildCard.Value.WILDDRAWFOUR){	
-			Player p = game.getNextPlayer();
-			for(int i = 0; i < 4; i++)
-				p.takeCard(game.getCardFromDeck());
-    	}
-    	
-    	super.applyEffect(game);	    	
+	public void applyEffect(EffectsController ctrl){
+    	ctrl.applyDrawFour();
+    	super.setColor(ctrl.applyWild());
     }
 
 }

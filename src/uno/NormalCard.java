@@ -1,6 +1,6 @@
 package uno;
 
-import tableGame.Play;
+import tableGame.EffectsController;
 
 /**
  * This class represent one card in a normal deck of uno
@@ -54,7 +54,7 @@ public class NormalCard extends UnoCard{
      */
     @Override
     public String getValue(){
-    	return this.value.name();
+    	return this.value.toString();
     }
     
     /**
@@ -62,7 +62,7 @@ public class NormalCard extends UnoCard{
      * modify the state of the game.
      */
     @Override
-    public void applyEffect(Play game){	}
+    public void applyEffect(EffectsController ctrl){	}
     
     /**
      * 
@@ -83,7 +83,7 @@ public class NormalCard extends UnoCard{
      */
     public static boolean validColor(String colorToComp){
     	for(Color color : Color.values()){
-    		if(color.equals(colorToComp.toUpperCase()))
+    		if(color.name().equals(colorToComp.toUpperCase()))
     			return true;
     	}
     	return false;

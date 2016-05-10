@@ -16,16 +16,20 @@ public class Player {
 	private Hand p_hand;
 	private String p_name;
 	
-	public Player(){
-		this("Player ");
+	public Player(int p_id){
+		this("Player ", p_id);
 		this.p_name += this.p_id.getID();
 	}
 	
-	public Player(String name) {
-		this.p_id   = IDGenerator.getInstance().getAnID();
+	public Player(String name, int p_id) {
+		this.p_id   = new ID<Integer>(p_id);
 		this.p_turn = false;
 		this.p_hand = new Hand();
 		this.p_name = name;
+	}
+	
+	public Player(String name, ID<Integer> p_id){
+		this(name, p_id.getID());
 	}
 	
 	/**
@@ -87,6 +91,14 @@ public class Player {
 			this.p_hand.addCard(card);
 		else
 			System.out.println("INVALID OPERATION.");
+	}
+	
+	/**
+	 * The player will always take the card.
+	 * @param card to be added.
+	 */
+	public void forceToTakeCard(UnoCard card){
+		this.p_hand.addCard(card);
 	}
 	
 	/**

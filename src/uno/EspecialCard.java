@@ -1,6 +1,6 @@
 package uno;
 
-import tableGame.Play;
+import tableGame.EffectsController;;
 
 /**
  *
@@ -21,9 +21,9 @@ public abstract class EspecialCard extends UnoCard{
      * 
     */
     public enum Value {
-        SKIP    { public String toString() { return "10";}},
-        REVERSE { public String toString() { return "11";}},
-        DRAWTWO { public String toString() { return "12";}}
+        SKIP    { public String toString() { return "SKIP";}},
+        REVERSE { public String toString() { return "REVERSE";}},
+        DRAWTWO { public String toString() { return "+2";}}
     }
 
     private final Color color;
@@ -47,14 +47,14 @@ public abstract class EspecialCard extends UnoCard{
      */
     @Override
     public String getValue(){
-    	return this.value.name();
+    	return this.value.toString();
     }
     
     /**
      * 
      */
     @Override
-    public abstract void applyEffect(Play game);
+    public abstract void applyEffect(EffectsController ctrl);
     
     /**
      * 

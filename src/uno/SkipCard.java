@@ -1,6 +1,6 @@
 package uno;
 
-import tableGame.Play;
+import tableGame.EffectsController;;
 
 /**
  * This class represents a Skip Card.
@@ -18,7 +18,7 @@ public class SkipCard extends EspecialCard{
 	 * in the end of the turn.
 	 */
 	@Override
-	public void applyEffect(Play game){
-		game.rotatePlayer();
+	public void applyEffect(EffectsController ctrl){
+		ctrl.applySkip();
 	}
 }

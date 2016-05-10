@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DiscardPile extends CardCollection <UnoCard>{
 	
 	public DiscardPile(){
-		super();
+		//super();
 	}
 	
 	/**
@@ -19,12 +19,19 @@ public class DiscardPile extends CardCollection <UnoCard>{
 	 */
 	@Override
 	public boolean addCard(UnoCard card){
+		if(this.getTopCard() == null)
+			return false;
+		
 		if(!this.getTopCard().match(card))
 			return false;
 
 		return this.cardList.add(card);
 	}
 
+	public void putFirstCard(UnoCard card){
+		this.cardList.add(card);
+	}
+	
 	/**
 	 * This operation is not allowed in this class, since the only way to
 	 * remove cards from this collection is removing all but the top.
