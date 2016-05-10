@@ -1,10 +1,19 @@
 package interpreter;
 import java.util.Scanner;
+import tableGame.PlayersManager;
 
+<<<<<<< HEAD
 import player.Player;
 import system.IDGenerator;
 import tableGame.PlayersManager;
 
+=======
+/**
+ * 
+ * @author Eduardo Pinto and Otavio Augusto.
+ *
+ */
+>>>>>>> 3e06a4c903ace610ef457114f3101ef550e562f2
 public class SignUpPlayers {
 	
 	private Scanner input = new Scanner(System.in);
