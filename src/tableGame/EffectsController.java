@@ -55,7 +55,7 @@ public class EffectsController {
 		UnoCard card2 = this.tControl.pullCard();
 		this.pControl.getNext().forceToTakeCard(card1);
 		this.pControl.getNext().forceToTakeCard(card2);
-		this.pControl.rotate();
+		this.pControl.rotateNextPlayer();
 	}
 	
 	/**
@@ -65,14 +65,14 @@ public class EffectsController {
 		this.pControl.changeDirection();
 		
 		if(this.pControl.getNumPlayers() == 2)
-			this.pControl.rotate();
+			this.pControl.rotateNextPlayer();
 	}
 	
 	/**
 	 * Rotate the game in order to skip the next player.
 	 */
 	public void applySkip(){
-		this.pControl.rotate();
+		this.pControl.rotateNextPlayer();
 	}
 	
 	/**
@@ -80,7 +80,6 @@ public class EffectsController {
 	 * @return a string that contains the color.
 	 */
 	public String applyWild(){
-		this.pControl.rotate();
 		return this.getWildColor();
 	}
 	
@@ -92,7 +91,8 @@ public class EffectsController {
 		for(int i = 0; i < 4; i++){
 			card = this.tControl.pullCard();
 			this.pControl.getNext().forceToTakeCard(card);
-		}			
+		}
+		this.pControl.rotateNextPlayer();
 	}
 
 }

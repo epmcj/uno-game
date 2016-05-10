@@ -1,19 +1,17 @@
 package interpreter;
-import java.util.Scanner;
-import tableGame.PlayersManager;
 
-<<<<<<< HEAD
+import java.util.Scanner;
 import player.Player;
 import system.IDGenerator;
 import tableGame.PlayersManager;
 
-=======
+
 /**
  * 
  * @author Eduardo Pinto and Otavio Augusto.
  *
  */
->>>>>>> 3e06a4c903ace610ef457114f3101ef550e562f2
+
 public class SignUpPlayers {
 	
 	private Scanner input = new Scanner(System.in);
@@ -22,13 +20,13 @@ public class SignUpPlayers {
 	
 	public void sign(){
 		int number;
-		System.out.print("DIGIT THE NUMBER OF PLAYER (2 TO 10):");
+		System.out.print("DIGIT THE NUMBER OF PLAYER (2 TO 10): ");
 		
 		number = input.nextInt();
 		
 		while(number < 2 || number > 10){
 			System.out.println("RANGER FROM 2 UNTIL 10 PLAYERS");
-			System.out.print("DIGIT THE NUMBER OF PLAYER (2 TO 10):");
+			System.out.print("DIGIT THE NUMBER OF PLAYER (2 TO 10): ");
 			number =input.nextInt();
 		}
 		

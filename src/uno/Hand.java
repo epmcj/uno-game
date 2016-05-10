@@ -48,5 +48,4 @@ public class Hand extends CardCollection <UnoCard>{
 			return null;
 		}
 	}
-
 }

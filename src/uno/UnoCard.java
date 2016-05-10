@@ -43,6 +43,6 @@ public abstract class UnoCard {
 	 */
 	@Override
     public String toString(){
-    	return this.getColor() + ' ' + this.getValue();
+    	return this.getColor()  + this.getValue();
     }
 }

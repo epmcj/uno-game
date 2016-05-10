@@ -126,16 +126,18 @@ public class PlayersManager {
 	/**
 	 * Rotate the players.
 	 */
-	public void rotate(){
-		if(this.toRight){
-			this.currElem = (this.currElem + 1) % players.size();
-			this.nextElem = (this.nextElem + 1) % players.size();
-		} else{
-			this.currElem = (this.currElem - 1 + players.size()) % players.size();
-			this.nextElem = (this.nextElem - 1 + players.size()) % players.size();
-		}
+	public void rotate(){	
+		this.players.get(this.currElem).passTurn(this.players.get(this.nextElem));
+		this.currElem = this.nextElem;
+		this.rotateNextPlayer();
+	}
+	
+	public void rotateNextPlayer(){
 		
-		this.players.get(this.currElem).passTurn(this.players.get(this.currElem));
+		if(this.toRight)
+			this.nextElem = (this.nextElem + 1) % players.size();
+		else			
+			this.nextElem = (this.nextElem - 1 + players.size()) % players.size();
 	}
 	
 	/**
@@ -162,4 +164,5 @@ public class PlayersManager {
 	public Player getNext(){
 		return this.players.get(this.nextElem);
 	}
+	
 }

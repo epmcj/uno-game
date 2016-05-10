@@ -1,37 +1,46 @@
 package interpreter;
-import tableGame.*;
+import game.Match;
 /**
  * 
  * @author Eduardo Pinto and Otavio Augusto.
  *
  */
 public class Commands {
-	
+	Match match = Match.getInstance();
+			
 	public boolean playCard(String[] fields){
-		//chama comandos necessarios para realizar a jogada caso a entrada seja valida e passa a vez avisando se o usuario disse uno
-		//se terminar o jogo retorna true
-		//caso controrio retorna false
+
+		if(this.match.playerPlayCard(fields[1])){
+			if(this.match.emptyHand())
+				return true;
+			
+			if(fields[1].startsWith("WILD")){
+				this.match.applyEffect(fields[2]);
+				
+				if(fields.length == 4)
+					this.match.passTurn(true);
+				else
+					this.match.passTurn(false);
+			} else{
+				
+				this.match.applyEffect();
+				if(fields.length == 3)
+					this.match.passTurn(true);
+				else
+					this.match.passTurn(false);
+			}
+		}
 		
-		//pega uma carta do jogador
-		//joga em table
-		//caso seja possivel verifica se é cor
-		//se sim passa setcolor
-		//	verifica se teve uno
-		//	pass vez com argumento se teve uno
-		//senao pass vez com argumento se teve uno
 		return false;
 	}
 	
 	public void draw(){
-		//somente compra uma carta
-		//from table pullCard
-		//to playersManager/getcurrent.takeCard()
+		match.playerTakeCard();	
+		match.showStatus();
 	}
 	
-	public boolean pass(){
-		//passa a vez
-		//from playersManager/passTurn(false) 
-		return false;
+	public void pass(){
+		match.passTurn(false);
 	}
 
 }

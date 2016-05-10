@@ -1,6 +1,5 @@
-package GAME;
+package game;
 import tableGame.*;
-import interpreter.Commands;
 import interpreter.SignUpPlayers;
 import player.Player;
 import uno.UnoCard;
@@ -10,21 +9,32 @@ public class Match implements game {
 	private EffectsController eControl;
 	private PlayersManager pControl;
 	private Table table;
-	private SignUpPlayers sUp;
+	private static Match match = null;
 	
-	public Match(){
+	private Match(){
 		this.table = Table.getInstance();
 		this.pControl = PlayersManager.getInstance();
 		this.eControl = new EffectsController(this.table,this.pControl);
-		this.sUp = new SignUpPlayers();
 	}
 
+	
+	public static Match getInstance(){
+		if(match == null)
+			match = new Match();
+		
+		return match;
+	}
+	/**
+	 * 
+	 */
 	@Override
 	public void init() {
-		this.sUp.sign();
 		this.table.prepareTable();		
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void start() {
 		if(this.verifyNumPlayers() == false){
@@ -37,8 +47,13 @@ public class Match implements game {
 		this.pControl.startRotation();
 		
 		System.out.println(this.pControl.getPlayersStatus());
+		this.showStatus();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean playerTakeCard(){
 		Player cPlayer = this.pControl.getCurrent();
 		UnoCard card = this.table.pullCard();
@@ -47,6 +62,10 @@ public class Match implements game {
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private boolean verifyNumPlayers(){
 		if(this.pControl.getNumPlayers() < 10 && 
 				this.pControl.getNumPlayers() > 1)
@@ -55,6 +74,10 @@ public class Match implements game {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private boolean distributeCards(){
 		Player p = this.pControl.getCurrent();
 		int firstID = p.getID();
@@ -78,9 +101,14 @@ public class Match implements game {
 		return true;
 	}
 	
-	public boolean playerPlayCard(int i){
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public boolean playerPlayCard(String name){
 		Player cPlayer = this.pControl.getCurrent();
-		UnoCard card = cPlayer.playCard(i);
+		UnoCard card = cPlayer.playCard(name);
 		if(card == null)
 			return false;
 		
@@ -88,14 +116,73 @@ public class Match implements game {
 			cPlayer.takeCard(card);
 			return false;
 		} 
-		
 		return true;
 	}
+	
+	/**
+	 * 
+	 */
+	public void applyEffect(){
+		UnoCard card = this.table.showTopCard();
+		card.applyEffect(eControl);
+		
+	}
+	
+	/**
+	 * 
+	 * @param wildColor
+	 */
+	public void applyEffect(String wildColor){
+		this.eControl.setWildColor(wildColor);
+		this.applyEffect();
+		
+	}
+	
+	/**
+	 * 
+	 * @param advertUno
+	 */
+	public void passTurn(boolean advertUno){
+		if(advertUno){
+			if(pControl.getCurrent().numCards() != 1){
+				this.playerTakeCard();
+				this.playerTakeCard();
+			}
+			
+		} else{
+			if(pControl.getCurrent().numCards() == 1){
+				this.playerTakeCard();
+				this.playerTakeCard();
+			}
+		}
+		
+		pControl.rotate();
+		this.showStatus();
+			
+	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean emptyHand(){
+		return (0 == pControl.getCurrent().numCards());
+	}
+	
+	public void showStatus(){
+		Player p = this.pControl.getCurrent();
+		System.out.println(p.getName() + ":");
+		p.showCards();
+		System.out.println("DP TOP: " + this.table.showTopCard().toString());
+	}
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void finish() {
-		// TODO Auto-generated method stub
-		//show winner 
+		
+		 
 	}
 	
 	

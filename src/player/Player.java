@@ -149,4 +149,12 @@ public class Player {
 		}
 		System.out.print("\n");
 	}
+	
+	/**
+	 * Empty the hand.
+	 */
+	public void emptyHand(){
+		while(!this.p_hand.isEmpty())
+			this.p_hand.getCard(0);
+		}
 }
