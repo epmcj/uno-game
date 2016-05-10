@@ -1,6 +1,5 @@
 package player;
 
-import system.IDGenerator;
 import uno.Hand;
 import uno.UnoCard;
 import system.ID;
@@ -16,8 +15,8 @@ public class Player {
 	private Hand p_hand;
 	private String p_name;
 	
-	public Player(int p_id){
-		this("Player ", p_id);
+	public Player(ID<Integer> p_id){
+		this("Player ", p_id.getID());
 		this.p_name += this.p_id.getID();
 	}
 	
@@ -86,11 +85,11 @@ public class Player {
 	 * The player takes a card if it's its turn.
 	 * @param card that will be taken.
 	 */
-	public void takeCard(UnoCard card){
+	public boolean takeCard(UnoCard card){
 		if(this.isAbleToPlay())
 			this.p_hand.addCard(card);
-		else
-			System.out.println("INVALID OPERATION.");
+		
+		return this.isAbleToPlay();
 	}
 	
 	/**
@@ -115,6 +114,20 @@ public class Player {
 					return this.p_hand.getCard(i);
 				i++;
 			}
+		}
+		
+		System.out.println("INVALID OPERATION.");
+		return null;
+	}
+	
+	/**
+	 * Play the ith card in the hand of the player; 
+	 * @param i index of the card.
+	 * @return the ith card or null if there is no ith card.
+	 */
+	public UnoCard playCard(int i){
+		if(this.isAbleToPlay()){
+			return this.p_hand.getCard(i);
 		}
 		
 		System.out.println("INVALID OPERATION.");

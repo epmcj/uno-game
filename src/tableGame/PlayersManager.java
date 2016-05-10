@@ -16,13 +16,21 @@ public class PlayersManager {
 	private int currElem;
 	private int nextElem;
 	private boolean toRight;
+	private static PlayersManager pM = null;
 	
-	public PlayersManager(){
+	private PlayersManager(){
 		this.players = new ArrayList<Player>();
 		this.canAdd  = true;
 		this.currElem = 0;
 		this.nextElem = 0;
 		this.toRight = true;
+	}
+	
+	public static PlayersManager getInstance(){
+		if(pM == null)
+			pM = new PlayersManager();
+		
+		return pM;			
 	}
 	
 	/**
@@ -35,14 +43,38 @@ public class PlayersManager {
 		if(this.canAdd){
 			this.players.add(player);
 			
-			if(this.players.size() == 1)
-				this.players.get(0).timeToPlay();
-			
 			if(this.players.size() == 2)
 				this.nextElem = 1;
 		}
 			
 		return this.canAdd;
+	}
+	
+	/**
+	 * Allow the first player to play. 
+	 */
+	public void startRotation(){
+		if(this.players.size() > 0)
+			this.players.get(0).timeToPlay();
+		else
+			System.out.println("Insuficient players.");
+	}
+	
+	/**
+	 * Return the status of the players. This status is a formated string
+	 * composed by manys "PlayerName : NumberOfCards".
+	 * @return a string that contains the status of all the cards.
+	 */
+	public String getPlayersStatus(){
+		String pStatus = "";
+		Player player;
+		for(int i = 0; i < this.players.size(); i++){
+			player  = this.players.get(i);
+			pStatus += "[" +player.getName() + ": ";
+			pStatus += Integer.toString(player.numCards()) + "] ";
+		} 
+		
+		return pStatus;
 	}
 	
 	/**
@@ -111,7 +143,16 @@ public class PlayersManager {
 	 * @return the current player.
 	 */
 	public Player getCurrent(){
-		return this.players.get(this.currElem);
+		Player p;
+		try{
+			p = this.players.get(this.currElem);
+			
+		} catch(IndexOutOfBoundsException e){
+			System.out.println("There isn't any players.");
+			p = null;
+		}
+			
+		return p; 
 	}
 	
 	/**

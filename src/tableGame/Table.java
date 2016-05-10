@@ -12,10 +12,18 @@ import uno.*;
 public class Table{
 	private DiscardPile dPile;
 	private UnoDeck deck;
+	private static Table table = null;
 	
-	public Table(){
+	private Table(){
 		this.dPile = new DiscardPile(); 
 		this.deck = new UnoDeck(); 
+	}
+	
+	public static Table getInstance(){
+		if(table == null)
+			table = new Table();
+		
+		return table;
 	}
 	
 	/**
