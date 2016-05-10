@@ -10,8 +10,8 @@ public class Input {
 	 	input = new Scanner(in);
 	 }
 	 	
-	 public String read(){
-	 	return this.input.nextLine();
+	 public String[] readFields(){
+	 	return this.input.nextLine().trim().split("\\s+");
 	 }
 	 	
 	 public void close(){
