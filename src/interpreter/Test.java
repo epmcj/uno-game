@@ -7,18 +7,13 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Input input = new Input(System.in);
-		String[] fields;
+		//Interpreter interpreter = new Interpreter();
+		//String[] fields;
+		SignUpPlayers signup = new SignUpPlayers();
 		
-		while(true){
-			fields = input.readFields();
-			if(fields[0].equals("sair")){
-				System.out.println("ok");
-				break;
-			}
-			for(int i = 0; i < fields.length; i++)
-				System.out.println(fields[i]);
-		}
+		signup.sign();
+		//interpreter.readCommands();
+
 	}
 
 }

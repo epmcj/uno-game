@@ -14,7 +14,7 @@ public class Interpreter {
 			fields = input.readFields();
 			
 			if(fields.length < 1 || fields.length > 4){
-				System.out.println("INVALID ENTRY. TRY AGAIN");
+				//System.out.println("INVALID ENTRY. TRY AGAIN");
 				continue;
 			}
 			
