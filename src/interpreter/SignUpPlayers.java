@@ -1,6 +1,12 @@
 package interpreter;
 import java.util.Scanner;
+import tableGame.PlayersManager;
 
+/**
+ * 
+ * @author Eduardo Pinto and Otavio Augusto.
+ *
+ */
 public class SignUpPlayers {
 	
 	private Scanner input = new Scanner(System.in);

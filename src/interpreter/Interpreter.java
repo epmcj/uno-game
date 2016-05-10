@@ -1,5 +1,10 @@
 package interpreter;
 
+/**
+ * 
+ * @author Eduardo Pinto and Otavio Augusto.
+ *
+ */
 public class Interpreter {
 	
 	private int State = 0;
@@ -19,39 +24,37 @@ public class Interpreter {
 			}
 			
 			switch(State){
-			
+				//responsable to check the first plays(only can be a "PLAY" or "DRAW") 
 				case 0:
 					switch(fields[0]){		
 						case "PLAY":
 							if(command.playCard(fields))
-								return true;//terminou partida
+								return true;				//terminou partida
+							this.State = 0;
 							break;
 							
 						case "DRAW":
-							if(command.draw())
-								this.State = 1;
+							command.draw();
+							this.State = 1;
 							break;
 					}
 					break;
-					
+				//check the second plays(only can be a "PLAY" or "PASS") 
 				case 1:
 					switch(fields[0]){
 						case "PLAY":
 							if(command.playCard(fields))
-								return true;//terminou partida
+								return true;				//terminou partida
 							this.State = 0;
 							break;
 														
 						case "PASS":
-							if(command.pass())
-								this.State = 0;
+							command.pass();
+							this.State = 0;
 							break;
 					}
 					break;
-			
 			}
-		
 		}
-	
 	}
 }
