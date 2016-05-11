@@ -21,7 +21,7 @@ public class SignUpPlayers {
 	
 	public boolean sign(){
 		int number;
-		System.out.print("DIGIT THE NUMBER OF PLAYER (2 TO 10): ");
+		System.out.print("DIGIT THE NUMBER OF PLAYERS (2 TO 10): ");
 		
 		try{
 			number = input.nextInt();
@@ -39,7 +39,7 @@ public class SignUpPlayers {
 		}
 		
 		for(int i = 0 ; i < number ; i++){
-			System.out.print("PLAYER " + String.valueOf(i+1) + " :");
+			System.out.print("PLAYER " + String.valueOf(i+1) + ": ");
 			pM.addPlayer(new Player(input.next(), idGen.getAnID()));
 		}
 		

@@ -20,7 +20,7 @@ public class WildDrawFourCard extends WildCard{
      */
     @Override
     public String getValue(){
-    	return this.value.name();
+    	return this.value.toString();
     }
     
 	/**

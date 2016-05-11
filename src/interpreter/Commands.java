@@ -1,5 +1,6 @@
 package interpreter;
 import game.Match;
+import uno.NormalCard;
 /**
  * 
  * @author Eduardo Pinto and Otavio Augusto.
@@ -10,12 +11,20 @@ public class Commands {
 			
 	public boolean playCard(String[] fields){
 
+		if(fields[1].startsWith("WILD") && !NormalCard.validColor(fields[2]))
+			return false;
+		
 		if(this.match.playerPlayCard(fields[1])){
 			if(this.match.emptyHand())
 				return true;
 			
 			if(fields[1].startsWith("WILD")){
-				this.match.applyEffect(fields[2]);
+				System.out.println(fields.length);
+				if(fields.length < 2)
+					return false;
+				
+				if(this.match.applyEffect(fields[2]) == false)
+					return false;
 				
 				if(fields.length == 4)
 					this.match.passTurn(true);
@@ -36,7 +45,10 @@ public class Commands {
 	
 	public void draw(){
 		match.playerTakeCard();	
-		match.showStatus();
+		System.out.println("\n---------------------------------------"
+				+ "-----------------------------------------");
+		System.out.println("NEW CARD ADDED IN THE END OF THE LIST.");
+		match.showHandStatus();
 	}
 	
 	public void pass(){

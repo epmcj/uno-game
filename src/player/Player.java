@@ -60,18 +60,8 @@ public class Player {
 	 * @param p2: The player that will play next.
 	 */
 	public void passTurn(Player p2){
-		if(this.isAbleToPlay()){
-			this.p_turn = false;
-			p2.timeToPlay();
-		}
-	}
-	
-	/**
-	 * Verify if it's the player turn.
-	 * @return true if it's its turn. False otherwise.
-	 */
-	public boolean isAbleToPlay(){
-		return this.p_turn;
+		this.p_turn = false;
+		p2.timeToPlay();
 	}
 	
 	/**
@@ -86,37 +76,23 @@ public class Player {
 	 * @param card that will be taken.
 	 */
 	public boolean takeCard(UnoCard card){
-		if(this.isAbleToPlay())
-			this.p_hand.addCard(card);
-		
-		return this.isAbleToPlay();
-	}
-	
-	/**
-	 * The player will always take the card.
-	 * @param card to be added.
-	 */
-	public void forceToTakeCard(UnoCard card){
-		this.p_hand.addCard(card);
+		return this.p_hand.addCard(card);
 	}
 	
 	/**
 	 * Play a card if it is its turn.
 	 * @param cardName: The name of the card. The name is compose by the color 
 	 * and the number or effect.
-	 * @return true if the card was played.
+	 * @return the card.
 	 */
 	public UnoCard playCard(String cardName){
-		if(this.isAbleToPlay()){
-			int i = 0;
-			while(i != this.p_hand.getNumCards()){
-				if(this.p_hand.showCard(i).equals(cardName))
-					return this.p_hand.getCard(i);
-				i++;
-			}
+		int i = 0;
+		while(i != this.p_hand.getNumCards()){
+			if(this.p_hand.showCard(i).equals(cardName))
+				return this.p_hand.getCard(i);
+			i++;
 		}
 		
-		System.out.println("INVALID OPERATION.");
 		return null;
 	}
 	
@@ -126,12 +102,7 @@ public class Player {
 	 * @return the ith card or null if there is no ith card.
 	 */
 	public UnoCard playCard(int i){
-		if(this.isAbleToPlay()){
-			return this.p_hand.getCard(i);
-		}
-		
-		System.out.println("INVALID OPERATION.");
-		return null;
+		return this.p_hand.getCard(i);
 	}
 	
 	/**
@@ -139,15 +110,24 @@ public class Player {
 	 */
 	public void showCards(){
 		int ncards =  this.p_hand.getNumCards();
+		String toPrint = "";
+		int i;
 		if(ncards == 0){
 			System.out.print("EMPTY HAND.");
 			
 		} else{
-			for(int i = 0; i < ncards; i++){
-				System.out.print("[" + this.p_hand.showCard(i) + "] ");
+			for(i = 0; i < ncards; i++){
+				toPrint += "[" + this.p_hand.showCard(i) + "] ";
 			}
 		}
-		System.out.print("\n");
+		
+		if(toPrint.length() > 80){
+			for(i = 0; i < toPrint.length()/80; i++)
+				System.out.println(toPrint.substring(i*80, i*80 + 80));
+			System.out.println(toPrint.substring(i*80));
+		} else {
+			System.out.println(toPrint);
+		}
 	}
 	
 	/**

@@ -23,10 +23,16 @@ public class Interpreter {
 				continue;
 			}
 			
+			for(int i = 0; i < fields.length; i++)
+				fields[i] = fields[i].toUpperCase();
+			
+			if(fields[0].equals("EXIT"))
+				return false;
+			
 			switch(State){
 				//responsable to check the first plays(only can be a "PLAY" or "DRAW") 
 				case 0:
-					switch(fields[0].toUpperCase()){		
+					switch(fields[0]){		
 						case "PLAY":
 							if(command.playCard(fields))
 								return true;				//terminou partida

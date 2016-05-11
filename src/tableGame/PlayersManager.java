@@ -127,11 +127,14 @@ public class PlayersManager {
 	 * Rotate the players.
 	 */
 	public void rotate(){	
-		this.players.get(this.currElem).passTurn(this.players.get(this.nextElem));
+		//this.players.get(this.currElem).passTurn(this.players.get(this.nextElem));
 		this.currElem = this.nextElem;
 		this.rotateNextPlayer();
 	}
 	
+	/**
+	 * Rotate only the next player.
+	 */
 	public void rotateNextPlayer(){
 		
 		if(this.toRight)
@@ -165,4 +168,16 @@ public class PlayersManager {
 		return this.players.get(this.nextElem);
 	}
 	
+	/**
+	 * Look for a player that have no more cards in the hand.
+	 * @return the winner, if there is one.
+	 */
+	public Player lookForWinner(){
+		for(int i = 0; i < this.players.size(); i++){
+			if(this.players.get(i).numCards() == 0)
+				return this.players.get(i);
+		}
+		
+		return null;
+	}
 }

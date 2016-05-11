@@ -27,10 +27,7 @@ public class EffectsController {
 	 * @return true if it was possible to save the color, false otherwise.
 	 */
 	public boolean setWildColor(String color){
-		if(color.toUpperCase().equals(NormalCard.Color.BLUE.name())||
-		   color.toUpperCase().equals(NormalCard.Color.RED.name())||
-		   color.toUpperCase().equals(NormalCard.Color.GREEN.name())||
-		   color.toUpperCase().equals(NormalCard.Color.YELLOW.name())){
+		if(NormalCard.validColor(color)){
 			this.wildColor = color;
 			return true;
 		}
@@ -53,8 +50,8 @@ public class EffectsController {
 	public void applyDrawTwo(){
 		UnoCard card1 = this.tControl.pullCard();
 		UnoCard card2 = this.tControl.pullCard();
-		this.pControl.getNext().forceToTakeCard(card1);
-		this.pControl.getNext().forceToTakeCard(card2);
+		this.pControl.getNext().takeCard(card1);
+		this.pControl.getNext().takeCard(card2);
 		this.pControl.rotateNextPlayer();
 	}
 	
@@ -90,7 +87,7 @@ public class EffectsController {
 		UnoCard card;
 		for(int i = 0; i < 4; i++){
 			card = this.tControl.pullCard();
-			this.pControl.getNext().forceToTakeCard(card);
+			this.pControl.getNext().takeCard(card);
 		}
 		this.pControl.rotateNextPlayer();
 	}

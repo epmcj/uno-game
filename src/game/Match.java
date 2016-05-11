@@ -1,6 +1,5 @@
 package game;
 import tableGame.*;
-import interpreter.SignUpPlayers;
 import player.Player;
 import uno.UnoCard;
 
@@ -10,6 +9,7 @@ public class Match implements game {
 	private PlayersManager pControl;
 	private Table table;
 	private static Match match = null;
+	private final static int N_CARDS_INI = 2;
 	
 	private Match(){
 		this.table = Table.getInstance();
@@ -88,12 +88,12 @@ public class Match implements game {
 
 		
 		do{
-			for(i = 0; i < 7; i++){
+			for(i = 0; i < N_CARDS_INI; i++){
 				card = this.table.pullCard();
 				if(card == null)
 					return false;
 				
-				p.forceToTakeCard(card);
+				p.takeCard(card);
 			}
 			
 			pControl.rotate();
@@ -136,10 +136,12 @@ public class Match implements game {
 	 * Apply the effect of an color change card in the game.
 	 * @param wildColor - the color choosed by the user.
 	 */
-	public void applyEffect(String wildColor){
-		this.eControl.setWildColor(wildColor);
-		this.applyEffect();
+	public boolean applyEffect(String wildColor){
+		if(this.eControl.setWildColor(wildColor) == false)
+			return false;
 		
+		this.applyEffect();
+		return true;
 	}
 	
 	/**
@@ -154,6 +156,7 @@ public class Match implements game {
 				this.playerTakeCard();
 			}
 			
+			this.announceUno();
 		} else{
 			if(pControl.getCurrent().numCards() == 1){
 				this.playerTakeCard();
@@ -179,29 +182,89 @@ public class Match implements game {
 	 */
 	public void showStatus(){
 		Player p = this.pControl.getCurrent();
-		System.out.println("---------------------------------------"
+		String pStatus;
+		int i;
+		
+		System.out.println("\n---------------------------------------"
 				+ "-----------------------------------------");
-		System.out.println(this.pControl.getPlayersStatus());
+		
+		pStatus = this.pControl.getPlayersStatus();
+		if(pStatus.length() > 80){
+			for(i = 0; i < pStatus.length()/80; i++)
+				System.out.println(pStatus.substring(i*80, i*80 + 80));
+			System.out.println(pStatus.substring(i*80));
+		} else{
+			System.out.println(pStatus);
+		}
+		
 		System.out.print("LAST CARD PLAYED: " 
 				+ this.table.showTopCard().toString() + "\t\t\t");
 		System.out.println(table.getNumCardsOnDeck() + " CARDS LEFT ON DECK.");
 		System.out.println("---------------------------------------"
 				+ "-----------------------------------------");
-		System.out.println(p.getName() + "'S TURN. CHOOSE ONE CARD:");
-		p.showCards();
-		System.out.println("---------------------------------------"
-				+ "-----------------------------------------");
-		
+		System.out.print(p.getName() + "'S TURN. ");
+		this.showHandStatus();		
 	}
 	
 	/**
-	 * 
+	 * Show the status of the hand of a player.
+	 */
+	public void showHandStatus(){
+		Player p = pControl.getCurrent();
+		System.out.println("CHOOSE ONE CARD:");
+		p.showCards();
+		System.out.println("---------------------------------------"
+				+ "-----------------------------------------");
+	}
+	
+	/**
+	 * Show the final message informing the end of the game and the winner.
 	 */
 	@Override
 	public void finish() {
+		Player winner = pControl.lookForWinner();
 		
+		if(winner == null)
+			System.out.println("\nNO WINNER IN THIS GAME. =(");
+		else
+			System.out.println("\nCONGRATULATIONS " + winner.getName()
+					 + "! \\o/\\o/\\o/\nYOU DEFEATED " + pControl.getNumPlayers()
+					 + " OPONENTS.");
 		 
 	}
 	
-	
+	/**
+	 * Just a funny message when someone says UNO! =)
+	 */
+	private void announceUno(){
+		
+		System.out.println("\n---------------------------------------"
+				+ "-----------------------------------------");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyso+++osyhdhhhhhhhhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyo:.......```-/shhhhhhhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy+..````.....````.:shhhhhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy:````-/osysso+:.```.+hhhhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyso/-.shhhhh:````/yddmddhhys+-..../hhhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:....-yhhds-```-ydhhhhddmhyho-....shhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyyhhhhhhhdhs+-````/hddo.  `-hhhhhhhhhmmdh/----:hhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhys+:-.-+shhhhdmys+.````+dds- ``.shhhhhhhhhmmd/::::-hhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhhyso/:shs/-``````-+shhdmhy/.  `.hhy/```.-yhhhhhhhhdmh-::::/hhh");
+		System.out.println("hhhhhhhhhhhhhhhhhhy/-...-hso:`````````-+sdmhh/````-hs+:.----oyhhhhhhhy::::::yhhh");
+		System.out.println("hhhhhhhhyyhhhhhhhdso:````:hs+:````-.`   `-oyhy:..../so+/::::-:/oooo/::::::/shhhh");
+		System.out.println("hhhhys+:--yhhhhhhmhs+-````oys+-`  `:/:.````.-+/:----os+++/::::::::::::::/oyhhhhh");
+		System.out.println("hhhhs:```./hhhhhhdmys/.```.yys/.```.+so+/-------::::-yhssso++///:::::/+shhhhhhhh");
+		System.out.println("hhdhy+-```.+hhhhhhdmys:````-hyy/....-yyysso/::::::::::dddhyyyyyssssyhdddhhhhhhhh");
+		System.out.println("hhdmhy/-```-shhhhhhddys:``..:dys:----:dddhhyyo+/::::::/hddddddmdmmmmddhhhhhhhhhh");
+		System.out.println("hhhdmys:.```-yhhhhhhmdhs:..-.odho::::-+hdmmdddhyo+/////shhhhdddddhhhhhhhhhhhhhhh");
+		System.out.println("hhhhddyo:.```:hhhhhhdmdd+:-:-.mhh+::::-ohhddmmdddhysyyhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println("hhhhhmhy+:....+hhhhhhdmd+::::.hmdh/::::-yhhhhddmmdddddhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println("hhhhhdmhy+:---.+yhhhhhds-:::::hdmdh/:/++ohhhhhhhddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");                   
+		System.out.println("hhhhhhdms++:-----/+o+/:-:::::shhmddyyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");                    
+		System.out.println("hhhhhhhddoo+/::::----:::::/+yhhhdmdmmddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");                 
+		System.out.println("hhhhhhhhddysso//:::::://+shhhhhhhddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");                       
+		System.out.println("hhhhhhhhhdmdddhhyyyyyhhdmdhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println("hhhhhhhhhhhdhhhhhhhhhhddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println("hhhhhhhhhhhhhhhdddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"); 
+	}
 }
