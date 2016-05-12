@@ -1,7 +1,8 @@
 package tableGame;
 
 import java.util.ArrayList;
-import player.Player;
+
+import system.Player;
 
 
 /**
@@ -48,16 +49,6 @@ public class PlayersManager {
 		}
 			
 		return this.canAdd;
-	}
-	
-	/**
-	 * Allow the first player to play. 
-	 */
-	public void startRotation(){
-		if(this.players.size() > 0)
-			this.players.get(0).timeToPlay();
-		else
-			System.out.println("Insuficient players.");
 	}
 	
 	/**

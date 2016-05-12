@@ -1,9 +1,8 @@
-package interpreter;
+package system;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import player.Player;
-import system.IDGenerator;
+
 import tableGame.PlayersManager;
 
 

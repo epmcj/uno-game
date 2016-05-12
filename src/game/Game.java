@@ -1,6 +1,6 @@
 package game;
 
-public interface game {
+public interface Game {
 	
 	public void init();
 	

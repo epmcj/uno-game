@@ -1,15 +1,15 @@
 package game;
+import system.Player;
 import tableGame.*;
-import player.Player;
 import uno.UnoCard;
 
-public class Match implements game {
+public class Match implements Game {
 	
 	private EffectsController eControl;
 	private PlayersManager pControl;
 	private Table table;
 	private static Match match = null;
-	private final static int N_CARDS_INI = 2;
+	private final static int N_CARDS_INI = 7;
 	
 	private Match(){
 		this.table = Table.getInstance();
@@ -45,9 +45,7 @@ public class Match implements game {
 		
 		this.distributeCards();
 		
-		this.pControl.startRotation();
-		
-		this.showStatus();
+		this.showMatchStatus();
 	}
 	
 	/**
@@ -68,7 +66,7 @@ public class Match implements game {
 	 * @return true if the number of players is in the valid interval, false 
 	 * otherwise.
 	 */
-	private boolean verifyNumPlayers(){
+	public boolean verifyNumPlayers(){
 		if(this.pControl.getNumPlayers() < 10 && 
 				this.pControl.getNumPlayers() > 1)
 			return true;
@@ -154,9 +152,10 @@ public class Match implements game {
 			if(pControl.getCurrent().numCards() != 1){
 				this.playerTakeCard();
 				this.playerTakeCard();
-			}
-			
-			this.announceUno();
+			} else{
+				this.announceUno();
+			}	
+
 		} else{
 			if(pControl.getCurrent().numCards() == 1){
 				this.playerTakeCard();
@@ -165,7 +164,7 @@ public class Match implements game {
 		}
 		
 		pControl.rotate();
-		this.showStatus();
+		this.showMatchStatus();
 			
 	}
 
@@ -173,14 +172,14 @@ public class Match implements game {
 	 * Verify if the current player have no more cards.
 	 * @return true if the player has no more cards, false otherwise.
 	 */
-	public boolean emptyHand(){
+	public boolean isEmptyHand(){
 		return (0 == pControl.getCurrent().numCards());
 	}
 	
 	/**
 	 * Show the status of the game printing them in the console.
 	 */
-	public void showStatus(){
+	public void showMatchStatus(){
 		Player p = this.pControl.getCurrent();
 		String pStatus;
 		int i;
@@ -230,6 +229,9 @@ public class Match implements game {
 			System.out.println("\nCONGRATULATIONS " + winner.getName()
 					 + "! \\o/\\o/\\o/\nYOU DEFEATED " + pControl.getNumPlayers()
 					 + " OPONENTS.");
+		
+		System.out.println("\nTHANK YOU FOR PLAYING. "
+				+ "\nCOME BACK ANYTIME YOU WANT.\n");
 		 
 	}
 	

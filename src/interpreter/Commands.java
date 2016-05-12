@@ -7,17 +7,15 @@ import uno.NormalCard;
  *
  */
 public class Commands {
-	Match match = Match.getInstance();
-			
+	private Match match = Match.getInstance();
+		
+	
 	public boolean playCard(String[] fields){
 
 		if(fields[1].startsWith("WILD") && !NormalCard.validColor(fields[2]))
 			return false;
 		
-		if(this.match.playerPlayCard(fields[1])){
-			if(this.match.emptyHand())
-				return true;
-			
+		if(this.match.playerPlayCard(fields[1])){			
 			if(fields[1].startsWith("WILD")){
 				System.out.println(fields.length);
 				if(fields.length < 2)
@@ -38,9 +36,15 @@ public class Commands {
 				else
 					this.match.passTurn(false);
 			}
+			
+			return true;
 		}
 		
 		return false;
+	}
+	
+	public boolean verifyEndGame(){
+		return match.isEmptyHand();
 	}
 	
 	public void draw(){

@@ -28,7 +28,11 @@ public class DiscardPile extends CardCollection <UnoCard>{
 		return this.cardList.add(card);
 	}
 
-	public void putFirstCard(UnoCard card){
+	/**
+	 * Starts the discard pile putting the first card.
+	 * @param card : the first card in the pile.
+	 */
+	public void initialize(UnoCard card){
 		this.cardList.add(card);
 	}
 	

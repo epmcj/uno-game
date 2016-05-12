@@ -1,8 +1,7 @@
-package player;
+package system;
 
 import uno.Hand;
 import uno.UnoCard;
-import system.ID;
 
 /** 
  * 
@@ -11,7 +10,6 @@ import system.ID;
  */
 public class Player {
 	private ID <Integer> p_id;
-	private boolean p_turn;
 	private Hand p_hand;
 	private String p_name;
 	
@@ -22,7 +20,6 @@ public class Player {
 	
 	public Player(String name, int p_id) {
 		this.p_id   = new ID<Integer>(p_id);
-		this.p_turn = false;
 		this.p_hand = new Hand();
 		this.p_name = name;
 	}
@@ -45,23 +42,6 @@ public class Player {
 	 */
 	public String getName(){
 		return this.p_name;
-	}
-	
-	/**
-	 * Set that it's time to play.
-	 */
-	public void timeToPlay(){
-		this.p_turn = true;
-	}
-	
-	
-	/**
-	 * Pass turn to another player.
-	 * @param p2: The player that will play next.
-	 */
-	public void passTurn(Player p2){
-		this.p_turn = false;
-		p2.timeToPlay();
 	}
 	
 	/**

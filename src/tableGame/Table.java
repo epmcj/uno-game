@@ -46,7 +46,7 @@ public class Table{
 			card = this.deck.getCard(0);
 		}
 		
-		this.dPile.putFirstCard(card);
+		this.dPile.initialize(card);
 	} 
 	
 	/**
