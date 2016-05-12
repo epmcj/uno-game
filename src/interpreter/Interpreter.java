@@ -1,16 +1,22 @@
 package interpreter;
 
 /**
- * 
+ * Interpreter is reponsible to identify the command passed by the current player
+ * and invoke the adequate method from command class to execute it properly.
  * @author Eduardo Pinto and Otavio Augusto.
- *
  */
 public class Interpreter {
 	
 	private int State = 0;
 	private Input input = new Input(System.in);
 	private Commands command = new Commands();
-		
+	
+	/**
+	 * This method performs the task to read a entry by calling the method 
+	 * "readFields" from Input class, compare the lenght if is acceptable
+	 * and choose what command must be called from Command class.
+	 * @return Boolean value. Case finish game return true.
+	 */
 	public boolean readCommands(){
 		String[] fields;
 		
