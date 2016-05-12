@@ -48,8 +48,7 @@ public class Interpreter {
 							}
 							
 							if(this.command.playCard(fields) == false){
-								System.out.println("YOU CAN'T PLAY THIS"
-										+ " CARD NOW.");
+								System.out.println("TRY AGAIN.");
 								
 							} else{
 								if(this.command.verifyEndGame())
@@ -80,8 +79,7 @@ public class Interpreter {
 							if(this.command.playCard(fields))
 								this.State = 0;
 							else
-								System.out.println("YOU CAN'T PLAY THIS CARD "
-										+ "NOW.");
+								System.out.println("TRY AGAIN");
 
 							if(this.command.verifyEndGame())
 								return true;

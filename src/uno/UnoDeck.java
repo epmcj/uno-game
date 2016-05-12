@@ -1,7 +1,6 @@
 	package uno;
 
 import java.util.Random;
-import cardGame.*;
 
 /**
  * 
@@ -24,7 +23,7 @@ public class UnoDeck extends CardCollection <UnoCard>{
             }
         }
 
-        for(EspecialCard.Color c:EspecialCard.Color.values()){
+        for(NormalCard.Color c:NormalCard.Color.values()){
             for(int j = 0; j < 2 ; j++) {
                 cardList.add(new SkipCard(c));
                 cardList.add(new ReverseCard(c));

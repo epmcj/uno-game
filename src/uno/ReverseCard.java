@@ -9,7 +9,7 @@ import tableGame.EffectsController;
  */
 public class ReverseCard extends EspecialCard{
 	
-	public ReverseCard(EspecialCard.Color color){
+	public ReverseCard(NormalCard.Color color){
 		super(color, EspecialCard.Value.REVERSE);
 	}
 	

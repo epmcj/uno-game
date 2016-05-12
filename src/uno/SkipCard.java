@@ -9,7 +9,7 @@ import tableGame.EffectsController;;
  */
 public class SkipCard extends EspecialCard{
 
-	public SkipCard(EspecialCard.Color color){
+	public SkipCard(NormalCard.Color color){
 		super(color, EspecialCard.Value.SKIP);
 	}
 	

@@ -1,5 +1,4 @@
 package uno;
-import cardGame.*;
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 
@@ -33,7 +32,8 @@ public class DiscardPile extends CardCollection <UnoCard>{
 	 * @param card : the first card in the pile.
 	 */
 	public void initialize(UnoCard card){
-		this.cardList.add(card);
+		if(this.cardList.size() == 0)
+			this.cardList.add(card);
 	}
 	
 	/**

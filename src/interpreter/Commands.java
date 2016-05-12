@@ -18,16 +18,12 @@ public class Commands {
 	 * @return Return a boolean value. If was possible to play return true, otherwise false.
 	 */
 	public boolean playCard(String[] fields){
-
-		if(fields[1].startsWith("WILD") && !NormalCard.validColor(fields[2]))
-			return false;
-		
-		if(this.match.playerPlayCard(fields[1])){			
+		if(this.match.playerPlayCard(fields[1])){	
+			
 			if(fields[1].startsWith("WILD")){
-				System.out.println(fields.length);
-				if(fields.length < 2)
+				if(fields.length < 3 || !NormalCard.validColor(fields[2]))
 					return false;
-				
+				 
 				if(this.match.applyEffect(fields[2]) == false)
 					return false;
 				

@@ -1,5 +1,4 @@
 package uno;
-import cardGame.*;
 
 /**
  * This class represents a hand of a UNO player. There are basic operations like

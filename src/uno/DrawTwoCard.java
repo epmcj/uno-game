@@ -3,7 +3,7 @@ package uno;
 import tableGame.EffectsController;
 
 public class DrawTwoCard extends EspecialCard{
-	public DrawTwoCard(EspecialCard.Color color){
+	public DrawTwoCard(NormalCard.Color color){
 		super(color, EspecialCard.Value.DRAWTWO);
 	}
 	

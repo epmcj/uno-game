@@ -26,10 +26,10 @@ public abstract class EspecialCard extends UnoCard{
         DRAWTWO { public String toString() { return "+2";}}
     }
 
-    private final Color color;
+    private final NormalCard.Color color;
     private final Value value;
 
-    public EspecialCard(final Color color, final Value value){
+    public EspecialCard(final NormalCard.Color color, final Value value){
         this.color = color;
         this.value = value;
     }

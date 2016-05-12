@@ -11,25 +11,17 @@ public class WildCard extends UnoCard{
     /**
      *
     */
-    public enum Color {        
-        BLACK  { public String toString() { return "BLACK"; }}
-    }
-
-    /**
-     *
-    */
     public enum Value {        
         WILD            { public String toString() { return "WILD";}},
         WILDDRAWFOUR    { public String toString() { return "WILD+4";}}
     }
 
-    private final Color color;
+    private final String color = "BLACK";
     private final Value value;
     private boolean used;
     private String effectiveColor;
 
     public WildCard(){
-        this.color = Color.BLACK;
         this.value = Value.WILD;
         this.used = false;
     }
@@ -41,7 +33,7 @@ public class WildCard extends UnoCard{
     @Override
     public String getColor(){
     	if(!this.used)
-    		return this.color.name();
+    		return this.color;
     	else
     		return this.effectiveColor;
     }
@@ -71,8 +63,10 @@ public class WildCard extends UnoCard{
     public boolean match(UnoCard card){
     	if(this.getColor().equals("BLACK"))
     		return false;
-    	
-    	return (card.getColor().equals(this.getColor()));	
+    	else if(card.getColor().equals("BLACK"))
+    		return true;
+    	else
+    		return (card.getColor().equals(this.getColor()));	
     }
     
     /**

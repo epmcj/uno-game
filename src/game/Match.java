@@ -67,7 +67,7 @@ public class Match implements Game {
 	 * otherwise.
 	 */
 	public boolean verifyNumPlayers(){
-		if(this.pControl.getNumPlayers() < 10 && 
+		if(this.pControl.getNumPlayers() <= 10 && 
 				this.pControl.getNumPlayers() > 1)
 			return true;
 		
