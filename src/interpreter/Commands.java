@@ -18,26 +18,17 @@ public class Commands {
 	 * @return Return a boolean value. If was possible to play return true, otherwise false.
 	 */
 	public boolean playCard(String[] fields){
-		if(this.match.playerPlayCard(fields[1])){	
-			
-			if(fields[1].startsWith("WILD")){
-				if(fields.length < 3 || !NormalCard.validColor(fields[2]))
-					return false;
-				 
+		if(fields[1].startsWith("WILD") && (fields.length < 3 
+				||!NormalCard.validColor(fields[2])))
+			return false;
+		
+		if(this.match.playerPlayCard(fields[1])){		
+			if(fields[1].startsWith("WILD")){				 
 				if(this.match.applyEffect(fields[2]) == false)
 					return false;
 				
-				if(fields.length == 4)
-					this.match.passTurn(true);
-				else
-					this.match.passTurn(false);
 			} else{
-				
 				this.match.applyEffect();
-				if(fields.length == 3)
-					this.match.passTurn(true);
-				else
-					this.match.passTurn(false);
 			}
 			
 			return true;
@@ -73,8 +64,8 @@ public class Commands {
 	 * receive this command, it call this method that only pass the turn to the 
 	 * next player.
 	 */ 
-	public void pass(){
-		match.passTurn(false);
+	public void pass(boolean unoAdvertise){
+		match.passTurn(unoAdvertise);
 	}
 
 }

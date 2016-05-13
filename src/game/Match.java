@@ -3,6 +3,11 @@ import system.Player;
 import tableGame.*;
 import uno.UnoCard;
 
+/**
+ * This class represents a match of UNO.
+ * @author eduardo
+ *
+ */
 public class Match implements Game {
 	
 	private EffectsController eControl;

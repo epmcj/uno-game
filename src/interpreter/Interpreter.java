@@ -53,6 +53,15 @@ public class Interpreter {
 							} else{
 								if(this.command.verifyEndGame())
 									return true;
+								
+								if(fields.length == 4 && 
+										fields[2].equals("UNO"))
+									this.command.pass(true);
+								else if(fields.length == 3 && 
+										fields[2].equals("UNO"))
+									this.command.pass(true);
+								else
+									this.command.pass(false);
 							}
 							
 							this.State = 0;
@@ -65,6 +74,7 @@ public class Interpreter {
 							
 						case "PASS":
 							System.out.println("YOU SHALL NOT PASS.");
+							this.State = 0;
 							break;
 							
 						default:
@@ -76,17 +86,27 @@ public class Interpreter {
 				case 1:
 					switch(fields[0].toUpperCase()){
 						case "PLAY":
-							if(this.command.playCard(fields))
-								this.State = 0;
-							else
+							if(this.command.playCard(fields) == false){
 								System.out.println("TRY AGAIN");
+							}else {
+								this.State = 0;
 
-							if(this.command.verifyEndGame())
-								return true;
+								if(this.command.verifyEndGame())
+									return true;
+								
+								if(fields.length == 4 && 
+										fields[2].equals("UNO"))
+									this.command.pass(true);
+								else if(fields.length == 3 && 
+										fields[2].equals("UNO"))
+									this.command.pass(true);
+								else
+									this.command.pass(false);
+							}
 							break;
 														
 						case "PASS":
-							this.command.pass();
+							this.command.pass(false);
 							this.State = 0;
 							break;
 							

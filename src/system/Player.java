@@ -4,7 +4,7 @@ import uno.Hand;
 import uno.UnoCard;
 
 /** 
- * 
+ * This class represents a player.
  * @author Eduardo Pinto and Otavio Augusto
  *
  */

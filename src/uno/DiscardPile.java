@@ -3,7 +3,7 @@ import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 
 /**
- * 
+ * This card represents a discard pile in a game.
  * @author Eduardo Pinto and Otavio Augusto
  *
  */

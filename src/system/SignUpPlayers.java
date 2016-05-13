@@ -7,7 +7,7 @@ import tableGame.PlayersManager;
 
 
 /**
- * 
+ * This class sign up the players.
  * @author Eduardo Pinto and Otavio Augusto.
  *
  */

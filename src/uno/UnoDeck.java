@@ -3,7 +3,7 @@
 import java.util.Random;
 
 /**
- * 
+ * This class represents a deck of uno cards.
  * @author Eduardo Pinto and Otavio Augusto
  *
  */
@@ -40,8 +40,11 @@ public class UnoDeck extends CardCollection <UnoCard>{
         
     }
 
+	/**
+	 * Shuffles the deck.
+	 */
     public void shuffle() {
-        for(int i = LENGTH - 1; i > 0; --i){
+        for(int i = cardList.size() - 1; i > 0; --i){
             int index = sourceRandom.nextInt(i);
             UnoCard c = cardList.get(index);
             cardList.set(index,cardList.get(i));
@@ -49,6 +52,11 @@ public class UnoDeck extends CardCollection <UnoCard>{
         }
     }
 
+    /**
+     * Get a card in the deck.
+     * @param i index of the card
+     * @return the card.
+     */
     public UnoCard get(final int i) { 
     	try{
 			return this.cardList.get(i);
@@ -58,17 +66,26 @@ public class UnoDeck extends CardCollection <UnoCard>{
 		} 
     }
 
+    /**
+     * Make a string that contains all cards in the deck.
+     */
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         for(UnoCard c : cardList){ sb.append(c.toString() + " ");}
         return sb.toString();
     }
 	
+    /**
+     * Add a card in the deck.
+     */
 	@Override
 	public boolean addCard(UnoCard card){
 		return this.cardList.add(card);     // PRECISA SER MODIFICADO.
 	}
 
+	/**
+	 * Get a card from the deck.
+	 */
 	@Override
 	public UnoCard getCard(int index){
 		try{

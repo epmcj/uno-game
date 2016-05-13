@@ -82,12 +82,26 @@ public class Table{
 	 * the discard pile is used to provide more cards to the game.
 	 * @return one card.
 	 */
-	public UnoCard pullCard(){		
+	public UnoCard pullCard(){	
+		UnoCard card = null;
 		if(this.deck.isEmpty()){
 			ArrayList <UnoCard> list = dPile.takeCardsBack();
-			for(int i = 0; i < list.size(); i++)
-				this.deck.addCard(list.remove(0));
-			this.deck.shuffle();
+			if(list.size() != 0){
+				for(int i = 0; i < list.size(); i++)
+					card = list.remove(0);
+				
+				if(card.getValue().equals("WILD+4"))
+					this.deck.addCard(new WildDrawFourCard());
+				else if(card.getValue().equals("WILD"))
+					this.deck.addCard(new WildCard());
+				else
+					this.deck.addCard(card);
+				
+				this.deck.shuffle();
+			} else{
+				System.out.println("NO MORE CARDS AVAILABLE");
+				return null;
+			}
 		}	
 			
 		return this.deck.getCard(0);

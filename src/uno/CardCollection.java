@@ -12,7 +12,7 @@ public abstract class CardCollection <CardType> {
 	protected ArrayList <CardType> cardList;
 	
 	public CardCollection(){
-		cardList = new ArrayList<CardType>();
+		this.cardList = new ArrayList<CardType>();
 	}
 	
 	public abstract boolean addCard(CardType card);
@@ -23,7 +23,7 @@ public abstract class CardCollection <CardType> {
 	 * @return the number of cards in the collection.
 	 */
 	public int getNumCards(){
-		return cardList.size();
+		return this.cardList.size();
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public abstract class CardCollection <CardType> {
 	 * @return true if it is empty, false otherwise.
 	 */
 	public boolean isEmpty(){
-		if(0 == cardList.size())
+		if(0 == this.cardList.size())
 			return true;
 		else
 			return false;

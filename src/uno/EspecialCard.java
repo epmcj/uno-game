@@ -7,9 +7,7 @@ import tableGame.EffectsController;;
  * 
 */
 public abstract class EspecialCard extends UnoCard{
-    /**
-     * 
-    */
+
     public enum Color {
         BLUE   { public String toString() { return "BLUE"; }},
         RED    { public String toString() { return "RED"; }},
@@ -17,9 +15,6 @@ public abstract class EspecialCard extends UnoCard{
         YELLOW { public String toString() { return "YELLOW"; }}
     }
 
-    /**
-     * 
-    */
     public enum Value {
         SKIP    { public String toString() { return "SKIP";}},
         REVERSE { public String toString() { return "REVERSE";}},
@@ -35,7 +30,7 @@ public abstract class EspecialCard extends UnoCard{
     }
     
     /**
-     * 
+     * Get the color of the card.
      */
     @Override
     public String getColor(){
@@ -43,7 +38,7 @@ public abstract class EspecialCard extends UnoCard{
     }
     
     /**
-     * 
+     * Get the value of the card.
      */
     @Override
     public String getValue(){
@@ -51,13 +46,13 @@ public abstract class EspecialCard extends UnoCard{
     }
     
     /**
-     * 
+     * Apply the effect of the card in the game.
      */
     @Override
     public abstract void applyEffect(EffectsController ctrl);
     
     /**
-     * 
+     * Verify if the cards match.
      */
     @Override
     public boolean match(UnoCard card){

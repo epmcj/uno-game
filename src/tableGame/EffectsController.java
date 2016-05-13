@@ -69,6 +69,7 @@ public class EffectsController {
 	 * Rotate the game in order to skip the next player.
 	 */
 	public void applySkip(){
+		System.out.println(pControl.getCurrent().getName());
 		this.pControl.rotateNextPlayer();
 	}
 	
