@@ -18,3 +18,6 @@
 - If the entire deck is used during play, the top discard is set aside and the rest of the pile is shuffled to create a new deck.
 - In a two-player game, the Reverse card acts like the Skip card.
 
+### Created by: 
+**[Eduardo Pinto](https://github.com/epmcj) and [Otávio Augusto](https://github.com/oaugusto)**
+
